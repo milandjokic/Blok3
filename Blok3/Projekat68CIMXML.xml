@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#"
+			xmlns:ftn="http://www.ftnydro.com/CIM15/2010/extension#">
+
+<!--SubGeographicalRegion-->
+	<cim:SubGeographicalRegion rdf:ID="SGR_1">
+	
+	</cim:SubGeographicalRegion>
+	<cim:SubGeographicalRegion rdf:ID="SGR_2">
+	
+	</cim:SubGeographicalRegion>
+<!--PerLengthSequenceImpedance-->
+	<cim:PerLengthSequenceImpedance rdf:ID="PLSI_1">
+		<cim:PerLengthSequenceImpedance.b0ch>10</cim:PerLengthSequenceImpedance.b0ch>
+		<cim:PerLengthSequenceImpedance.bch>10</cim:PerLengthSequenceImpedance.bch>
+		<cim:PerLengthSequenceImpedance.g0ch>10</cim:PerLengthSequenceImpedance.g0ch>
+		<cim:PerLengthSequenceImpedance.gch>10</cim:PerLengthSequenceImpedance.gch>
+		<cim:PerLengthSequenceImpedance.r>10</cim:PerLengthSequenceImpedance.r>
+		<cim:PerLengthSequenceImpedance.r0>10</cim:PerLengthSequenceImpedance.r0>
+		<cim:PerLengthSequenceImpedance.x>10</cim:PerLengthSequenceImpedance.x>
+		<cim:PerLengthSequenceImpedance.x0>10</cim:PerLengthSequenceImpedance.x0>
+	</cim:PerLengthSequenceImpedance>
+<!--Line-->
+	<cim:Line rdf:ID="LINE_1">
+		<cim:Line.Region rdf:resource="#SGR_1"/>
+	</cim:Line>
+	<cim:Line rdf:ID="LINE_2">
+		<cim:Line.Region rdf:resource="#SGR_2"/>
+	</cim:Line>
+<!--DCLineSegment-->
+	<cim:DCLineSegment rdf:ID="DCLS_1">
+		<cim:Equipment.EquipmentContainer rdf:resource="#LINE_1"/>
+		<cim:Conductor.length>10</cim:Conductor.length>
+	</cim:DCLineSegment>
+<!--ACLineSegment-->
+	<cim:ACLineSegment rdf:ID="ACLS_1">
+		<cim:ACLineSegment.PerLengthImpedance rdf:resource="#PLSI_1"/>
+		<cim:Equipment.EquipmentContainer rdf:resource="#SGR_2"/>
+		<cim:ACLineSegment.b0ch>10</cim:ACLineSegment.b0ch>
+		<cim:ACLineSegment.bch>10</cim:ACLineSegment.bch>
+		<cim:ACLineSegment.g0ch>10</cim:ACLineSegment.g0ch>
+		<cim:ACLineSegment.gch>10</cim:ACLineSegment.gch>
+		<cim:ACLineSegment.r>10</cim:ACLineSegment.r>
+		<cim:ACLineSegment.r0>10</cim:ACLineSegment.r0>
+		<cim:ACLineSegment.x>10</cim:ACLineSegment.x>
+		<cim:ACLineSegment.x0>10</cim:ACLineSegment.x0>
+		<cim:Conductor.length>10</cim:Conductor.length>
+	</cim:ACLineSegment>
+
+<!--SeriesCompensator-->
+	<cim:SeriesCompensator rdf:ID="SC_1">
+		<cim:Equipment.EquipmentContainer rdf:resource="#LINE_1"/>
+		<cim:SeriesCompensator.r>10</cim:SeriesCompensator.r>
+		<cim:SeriesCompensator.r0>10</cim:SeriesCompensator.r0>
+		<cim:SeriesCompensator.x>10</cim:SeriesCompensator.x>
+		<cim:SeriesCompensator.x0>10</cim:SeriesCompensator.x0>
+	</cim:SeriesCompensator>
+	<cim:SeriesCompensator rdf:ID="SC_2">
+		<cim:Equipment.EquipmentContainer rdf:resource="#LINE_2"/>
+		<cim:SeriesCompensator.r>10</cim:SeriesCompensator.r>
+		<cim:SeriesCompensator.r0>10</cim:SeriesCompensator.r0>
+		<cim:SeriesCompensator.x>10</cim:SeriesCompensator.x>
+		<cim:SeriesCompensator.x0>10</cim:SeriesCompensator.x0>
+	</cim:SeriesCompensator>
+</rdf:RDF>
+
+
+
+
+

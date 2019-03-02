@@ -1,0 +1,4 @@
+﻿namespace FTN.Common
+{
+			
+}

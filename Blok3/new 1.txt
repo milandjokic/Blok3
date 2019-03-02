@@ -1,0 +1,15 @@
+-Dodavanje DLL-a na adapter
+-ModelDefines i ModelResourceDesctiption
+-DataModel
+-Container
+-PowerTransformerConverter i Importer
+-Client	
+
+ModelCode: napraviti model kodove za svoje klase i DMS tipovi za konkretne klase.
+PowerTransformerImporter: treba da se otkucaju import i resourceDescription metode i da se one pozovu.
+PowerTransformerConverter: treba da se otkucaju populate metode i enumeracije (ko ih ima).
+ResourcePropertiesDesc: InitializeTypeIdsInInsertOrder i InitializeNotSettableProperties.
+EnumsDesc: napraviti enumeracije ko ima.
+FtnCommon: enumeracije.
+Sve DataModel klase: promeniti polja i metode postojecim i dodati nove klase. Obratiti paznju na reference.
+
