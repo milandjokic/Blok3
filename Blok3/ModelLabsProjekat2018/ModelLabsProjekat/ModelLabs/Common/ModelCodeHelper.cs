@@ -2,7 +2,7 @@
 
 namespace FTN.Common
 {
-    public class ModelCodeHelper
+	public class ModelCodeHelper
 	{
 		
 		/// <summary>

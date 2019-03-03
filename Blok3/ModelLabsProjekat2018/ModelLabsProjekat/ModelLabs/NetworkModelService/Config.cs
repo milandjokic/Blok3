@@ -4,7 +4,7 @@ using System.Configuration;
 
 namespace FTN.Services.NetworkModelService
 {
-    public class Config 
+	public class Config 
 	{
 
 		private string connectionString = string.Empty;
@@ -36,9 +36,9 @@ namespace FTN.Services.NetworkModelService
 			}			
 		}
 
-        #endregion Static members
+		#endregion Static members
 
-        public string GetCompositeId(long valueWithSystemId)
+		public string GetCompositeId(long valueWithSystemId)
 		{
 			string systemId = (Math.Abs(valueWithSystemId) >> 48).ToString();
 			string valueWithoutSystemId = (Math.Abs(valueWithSystemId) & 0x0000FFFFFFFFFFFF).ToString();

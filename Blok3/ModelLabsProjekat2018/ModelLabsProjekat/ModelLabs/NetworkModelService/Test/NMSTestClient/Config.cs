@@ -3,43 +3,38 @@ using System.IO;
 
 namespace FTN.Services.NetworkModelService.TestClient
 {
-    public class Config
+	public class Config
 	{
 
-        private string resultDirecotry = string.Empty;
+		public string ResultDirecotry { get; } = string.Empty;
 
-        public string ResultDirecotry
-        {
-            get { return resultDirecotry; }
-        }
-
-        private Config()
+		private Config()
 		{
-            resultDirecotry = ConfigurationManager.AppSettings["ResultDirecotry"];
+			ResultDirecotry = ConfigurationManager.AppSettings["ResultDirecotry"];
 
-            if (!Directory.Exists(resultDirecotry))
-            {
-                Directory.CreateDirectory(resultDirecotry);
-            }
+			if (!Directory.Exists(ResultDirecotry))
+			{
+				Directory.CreateDirectory(ResultDirecotry);
+			}
 		}
 
-        #region Static members
+		#region Static members
 
-        private static Config instance = null;
+		private static Config instance = null;
 
-        public static Config Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Config();
-                }
+		public static Config Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+					instance = new Config();
+				}
 
-                return instance;
-            }
-        }
+				return instance;
+			}
+		}
 
-        #endregion Static members
+		#endregion Static members
 	}
 }

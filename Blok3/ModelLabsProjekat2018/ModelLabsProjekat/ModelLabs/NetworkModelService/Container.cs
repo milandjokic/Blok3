@@ -1,5 +1,6 @@
 ﻿using FTN.Common;
 using FTN.Services.NetworkModelService.DataModel.Core;
+using FTN.Services.NetworkModelService.DataModel.Wires;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,35 +8,24 @@ using System.Linq;
 
 namespace FTN.Services.NetworkModelService
 {
-    public class Container
+	public class Container
 	{
 		/// <summary>
 		/// The dictionary of entities. Key = GlobaId, Value = Entity
 		/// </summary>		
-		private Dictionary<long, IdentifiedObject> entities = new Dictionary<long, IdentifiedObject>();	
+		public Dictionary<long, IdentifiedObject> Entities { get; set; } = new Dictionary<long, IdentifiedObject>();	
 
 		/// <summary>
 		/// Initializes a new instance of the Container class
 		/// </summary>
-		public Container()
-		{
-		}
-
-		/// <summary>
-		/// Gets or sets dictionary of entities (identified objects) inside container.
-		/// </summary>	
-		public Dictionary<long, IdentifiedObject> Entities
-		{
-			get { return entities; }
-			set { entities = value; }
-		}
+		public Container() { }
 
 		/// <summary>
 		/// Gets a number of entitis in container
 		/// </summary>		
 		public int Count
 		{
-			get { return entities.Count; }
+			get { return Entities.Count; }
 		}
 
 		/// <summary>
@@ -43,25 +33,25 @@ namespace FTN.Services.NetworkModelService
 		/// </summary>		
 		public bool IsEmpty
 		{
-			get { return entities.Count == 0; }			
+			get { return Entities.Count == 0; }			
 		}
 			
 		# region operators
 
 		public static bool operator ==(Container x, Container y)
 		{
-			if (Object.ReferenceEquals(x, null) && Object.ReferenceEquals(y, null))
+			if (ReferenceEquals(x, null) && ReferenceEquals(y, null))
 			{
 				return true;
 			}
-			else if ((Object.ReferenceEquals(x, null) && !Object.ReferenceEquals(y, null)) || (!Object.ReferenceEquals(x, null) && Object.ReferenceEquals(y, null)))
+			else if ((ReferenceEquals(x, null) && !ReferenceEquals(y, null)) || (!ReferenceEquals(x, null) && ReferenceEquals(y, null)))
 			{
 				return false;
 			}
 			else
 			{
 				// TO DO
-				if (x.entities.Count != y.entities.Count)
+				if (x.Entities.Count != y.Entities.Count)
 				{
 					return false;
 				}
@@ -90,10 +80,10 @@ namespace FTN.Services.NetworkModelService
 			return !(x == y);
 		}
 
-        public override bool Equals (object obj)
-        {
+		public override bool Equals (object obj)
+		{
 			return this == (Container)obj;
-        }
+		}
 
 		public override int GetHashCode()
 		{
@@ -107,30 +97,39 @@ namespace FTN.Services.NetworkModelService
 		/// </summary>
 		/// <param name="globalId">Global id of the entity for insert</param>		
 		/// <returns>Created entity (identified object).</returns>
-		public IdentifiedObject CreateEntity(long globalId)
+		public IdentifiedObject CreateEntity(long globalId) // DONE
 		{
 			short type = ModelCodeHelper.ExtractTypeFromGlobalId(globalId);
 
 			IdentifiedObject io = null;			
 			switch ((DMSType)type)
 			{
-				//case DMSType.POWERTR:
-				//	io = new PowerTransformer(globalId);
-				//	break;
-				//case DMSType.POWERTRWINDING:
-				//	io = new TransformerWinding(globalId);
-				//	break;
-				//case DMSType.WINDINGTEST:
-				//	io = new WindingTest(globalId);
-				//	break;			
+				case DMSType.LINE:
+					io = new Line(globalId);
+					break;
+				case DMSType.DCLINESEG:
+					io = new DCLineSegment(globalId);
+					break;
+				case DMSType.ACLINESEG:
+					io = new ACLineSegment(globalId);
+					break;
+				case DMSType.SERCOMP:
+					io = new SeriesCompensator(globalId);
+					break;
+				case DMSType.SUBGEOREG:
+					io = new SubGeographicalRegion(globalId);
+					break;
+				case DMSType.PERLENSEQIMP:
+					io = new PerLengthSequenceImpedance(globalId);
+					break;
 
 				default:					
-					string message = String.Format("Failed to create entity because specified type ({0}) is not supported.", type);
+					string message = string.Format("Failed to create entity because specified type ({0}) is not supported.", type);
 					CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 					throw new Exception(message);					
 			}
 
-            // Add entity to map
+			// Add entity to map
 			this.AddEntity(io);
 
 			return io;
@@ -143,7 +142,7 @@ namespace FTN.Services.NetworkModelService
 		/// <returns>TRUE if the entity is found.</returns>
 		public bool EntityExists(long globalId)
 		{
-			return entities.ContainsKey(globalId);
+			return Entities.ContainsKey(globalId);
 		}	
 
 		/// <summary>
@@ -155,11 +154,11 @@ namespace FTN.Services.NetworkModelService
 		{
 			if (EntityExists(globalId))
 			{
-				return entities[globalId];
+				return Entities[globalId];
 			}
 			else
 			{
-				string message = String.Format("Failed to retrieve entity (GID = 0x{1:x16}) because entity doesn't exist.", globalId);
+				string message = string.Format("Failed to retrieve entity (GID = 0x{0:x16}) because entity doesn't exist.", globalId);
 				CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 				throw new Exception(message);
 			}
@@ -174,11 +173,11 @@ namespace FTN.Services.NetworkModelService
 		{
 			if (!EntityExists(io.GlobalId))
 			{
-				entities[io.GlobalId] = io;
+				Entities[io.GlobalId] = io;
 			}
 			else
 			{
-				string message = String.Format("Entity (GID = 0x{1:x16}) already exists.", io.GlobalId);
+				string message = string.Format("Entity (GID = 0x{0:x16}) already exists.", io.GlobalId);
 				CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 				throw new Exception(message);
 			}
@@ -194,11 +193,11 @@ namespace FTN.Services.NetworkModelService
 			IdentifiedObject io = null;
 			if (EntityExists(globalId))
 			{
-				entities.Remove(globalId);
+				Entities.Remove(globalId);
 			}
 			else
 			{
-				string message = String.Format("Failed to remove entity because entity with GID = {0} doesn't exist at the specified position ( {0} ).", globalId);
+				string message = string.Format("Failed to remove entity because entity with GID = {0} doesn't exist at the specified position ( {0} ).", globalId);
 				CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 				throw new Exception(message);
 			}
@@ -212,7 +211,7 @@ namespace FTN.Services.NetworkModelService
 		/// <returns>Returns globalIds of all entities</returns>
 		public List<long> GetEntitiesGlobalIds()
 		{
-			return entities.Keys.ToList();
+			return Entities.Keys.ToList();
 		}			
 	}
 }

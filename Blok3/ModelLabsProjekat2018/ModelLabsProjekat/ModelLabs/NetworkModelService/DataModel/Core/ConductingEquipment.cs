@@ -1,11 +1,15 @@
 ﻿using FTN.Common;
-using System.Collections.Generic;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
-    public class ConductingEquipment : Equipment
+	public class ConductingEquipment : Equipment
 	{
-        public ConductingEquipment(long globalId) : base(globalId) { }
+		public ConductingEquipment(long globalId) : base(globalId) { }
+
+		public override bool Equals(object obj)
+		{
+			return base.Equals(obj);
+		}
 
 		public override int GetHashCode()
 		{
@@ -19,15 +23,15 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 			return base.HasProperty(property);
 		}
 
-		public override void GetProperty(Property prop)
+		public override void GetProperty(Property property)
 		{
-			base.GetProperty(prop);
+			base.GetProperty(property);
 		}
 
 		public override void SetProperty(Property property)
 		{
 			base.SetProperty(property);
-		}	
+		}
 
 		#endregion IAccess implementation
 	}

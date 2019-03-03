@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
-    public enum TypeOfReference : short
+	public enum TypeOfReference : short
 	{
 		Reference = 1,
 		Target = 2,
@@ -21,89 +21,24 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 		/// <summary>
 		/// Global id of the identified object (SystemId - 4 nibls, DMSType - 4 nibls, FragmentId - 8 nibls)
 		/// </summary>
-		private long globalId;
-		
-		/// <summary>
-		/// Name of identified object
-		/// </summary>		
-		private string name = string.Empty;
+		public long GlobalId { get; set; }
 
-		/// <summary>
-		/// Mrid (source) id of identified object
-		/// </summary>		
-		private string mrid = string.Empty;
-
-		/// <summary>
-		/// Description of identified object
-		/// </summary>		
-		private string description = string.Empty;
-		
 		/// <summary>
 		/// Initializes a new instance of the IdentifiedObject class.
 		/// </summary>		
 		/// <param name="globalId">Global id of the entity.</param>
 		public IdentifiedObject(long globalId)
 		{
-			this.globalId = globalId;			
-		}		
-
-		/// <summary>
-		/// Gets or sets global id of the entity (identified object).
-		/// </summary>			
-		public long GlobalId
-		{
-			get
-			{
-				return globalId;
-			}
-
-			set
-			{
-				globalId = value;
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets name of the entity (identified object).
-		/// </summary>			
-		public string Name
-		{
-			get
-			{				
-				return name;
-			}
-
-			set
-			{			
-				name = value;
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets mrid of the entity (identified object).
-		/// </summary>			
-		public string Mrid
-		{
-			get { return mrid; }
-			set { mrid = value; }
-		}
-
-		/// <summary>
-		/// Gets or sets description of the entity (identified object).
-		/// </summary>			
-		public string Description
-		{
-			get { return description; }
-			set { description = value; }
-		}		
+			GlobalId = globalId;			
+		}				
 
 		public static bool operator ==(IdentifiedObject x, IdentifiedObject y)
 		{
-			if(Object.ReferenceEquals(x, null) && Object.ReferenceEquals(y, null))
+			if(ReferenceEquals(x, null) && ReferenceEquals(y, null))
 			{
 				return true;
 			}
-			else if((Object.ReferenceEquals(x, null) && !Object.ReferenceEquals(y, null)) || (!Object.ReferenceEquals(x, null) && Object.ReferenceEquals(y, null)))
+			else if((ReferenceEquals(x, null) && !ReferenceEquals(y, null)) || (!ReferenceEquals(x, null) && ReferenceEquals(y, null)))
 			{
 				return false;
 			}
@@ -120,16 +55,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 
 		public override bool Equals(object x)
 		{
-			if(Object.ReferenceEquals(x, null))
-			{
-				return false;
-			}
-			else
-			{
-				IdentifiedObject io = (IdentifiedObject)x;
-				return ((io.GlobalId == this.GlobalId) && (io.name == this.name) && (io.mrid == this.mrid) &&
-						(io.description == this.description));
-			}
+			return base.Equals(x);
 		}
 		
 		public override int GetHashCode()
@@ -143,11 +69,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 		{
 			switch(property)
 			{
-				//case ModelCode.IDOBJ_GID:				
-				//case ModelCode.IDOBJ_NAME:
-				//case ModelCode.IDOBJ_DESCRIPTION:
-				//case ModelCode.IDOBJ_MRID:
-				//	return true;
+				case ModelCode.IDOBJ_GID:				
+					return true;
 
 				default:				
 					return false;
@@ -158,51 +81,18 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 		{
 			switch(property.Id)
 			{
-				//case ModelCode.IDOBJ_GID:
-				//	property.SetValue(globalId);
-				//	break;
+				case ModelCode.IDOBJ_GID:
+					property.SetValue(GlobalId);
+					break;
 
-				//case ModelCode.IDOBJ_NAME:
-				//	property.SetValue(name);
-				//	break;
-
-				//case ModelCode.IDOBJ_MRID:
-				//	property.SetValue(mrid);
-				//	break;
-
-    //            case ModelCode.IDOBJ_DESCRIPTION:
-    //                property.SetValue(description);
-    //                break;
-			
 				default:
-					string message = string.Format("Unknown property id = {0} for entity (GID = 0x{1:x16}).", property.Id.ToString(), this.GlobalId);
+					string message = string.Format("Unknown property id = {0} for entity (GID = 0x{1:x16}).", property.Id.ToString(), GlobalId);
 					CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 					throw new Exception(message);										
 			}
 		}
 
-		public virtual void SetProperty(Property property)
-		{
-			switch(property.Id)
-			{
-				//case ModelCode.IDOBJ_NAME:
-				//	name = property.AsString();					
-				//	break;
-
-				//case ModelCode.IDOBJ_DESCRIPTION:
-				//	description = property.AsString();					
-				//	break;
-
-				//case ModelCode.IDOBJ_MRID:					
-				//	mrid = property.AsString();
-				//	break;				
-
-				default:					
-					string message = string.Format("Unknown property id = {0} for entity (GID = 0x{1:x16}).", property.Id.ToString(), this.GlobalId);
-					CommonTrace.WriteTrace(CommonTrace.TraceError, message);
-					throw new Exception(message);					
-			}
-		}
+		public virtual void SetProperty(Property property) { }
 
 		#endregion IAccess implementation
 
@@ -223,14 +113,14 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 
 		public virtual void AddReference(ModelCode referenceId, long globalId)
 		{
-			string message = string.Format("Can not add reference {0} to entity (GID = 0x{1:x16}).", referenceId, this.GlobalId);
+			string message = string.Format("Can not add reference {0} to entity (GID = 0x{1:x16}).", referenceId, GlobalId);
 			CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 			throw new Exception(message);						
 		}
 
 		public virtual void RemoveReference(ModelCode referenceId, long globalId)
 		{
-			string message = string.Format("Can not remove reference {0} from entity (GID = 0x{1:x16}).", referenceId, this.GlobalId);
+			string message = string.Format("Can not remove reference {0} from entity (GID = 0x{1:x16}).", referenceId, GlobalId);
 			CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 			throw new ModelException(message);		
 		}
@@ -246,16 +136,16 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 
 		public ResourceDescription GetAsResourceDescription(bool onlySettableAttributes)
 		{
-			ResourceDescription rd = new ResourceDescription(globalId);
+			ResourceDescription rd = new ResourceDescription(GlobalId);
 			List<ModelCode> props = new List<ModelCode>();
 
 			if (onlySettableAttributes == true)
 			{
-				props = resourcesDescs.GetAllSettablePropertyIdsForEntityId(globalId);
+				props = resourcesDescs.GetAllSettablePropertyIdsForEntityId(GlobalId);
 			}
 			else
 			{
-				props = resourcesDescs.GetAllPropertyIdsForEntityId(globalId);
+				props = resourcesDescs.GetAllPropertyIdsForEntityId(GlobalId);
 			}
 
 			return rd;
@@ -263,7 +153,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 
 		public ResourceDescription GetAsResourceDescription(List<ModelCode> propIds)
 		{
-			ResourceDescription rd = new ResourceDescription(globalId);
+			ResourceDescription rd = new ResourceDescription(GlobalId);
 
 			for (int i = 0; i < propIds.Count; i++)
 			{

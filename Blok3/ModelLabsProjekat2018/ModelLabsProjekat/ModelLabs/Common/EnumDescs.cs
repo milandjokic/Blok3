@@ -3,17 +3,11 @@ using System.Collections.Generic;
 
 namespace FTN.Common
 {
-    public class EnumDescs
+	public class EnumDescs
 	{
 		private Dictionary<ModelCode, Type> property2enumType = new Dictionary<ModelCode, Type>();
 
-		public EnumDescs()
-		{
-			//property2enumType.Add(ModelCode.CONDEQ_PHASES, typeof(PhaseCode));
-			//property2enumType.Add(ModelCode.POWERTR_FUNC, typeof(TransformerFunction));
-			//property2enumType.Add(ModelCode.POWERTRWINDING_CONNTYPE, typeof(WindingConnection));
-			//property2enumType.Add(ModelCode.POWERTRWINDING_WINDTYPE, typeof(WindingType));														
-		}
+		public EnumDescs() { }
 
 		public List<string> GetEnumList(ModelCode propertyId)
 		{
@@ -93,15 +87,15 @@ namespace FTN.Common
 			}
 			else if (Enum.GetUnderlyingType(type) == typeof(uint))
 			{
-				return (short)((uint)Enum.Parse(type, value));
+				return (short)(uint)Enum.Parse(type, value);
 			}
 			else if (Enum.GetUnderlyingType(type) == typeof(byte))
 			{
-				return (short)((byte)Enum.Parse(type, value));
+				return (byte)Enum.Parse(type, value);
 			}
 			else if (Enum.GetUnderlyingType(type) == typeof(sbyte))
 			{
-				return (short)((sbyte)Enum.Parse(type, value));
+				return (sbyte)Enum.Parse(type, value);
 			}
 			else
 			{

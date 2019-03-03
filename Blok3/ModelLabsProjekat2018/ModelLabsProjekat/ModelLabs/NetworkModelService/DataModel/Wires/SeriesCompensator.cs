@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FTN.Common;
+﻿using FTN.Common;
 using FTN.Services.NetworkModelService.DataModel.Core;
 
 namespace FTN.Services.NetworkModelService.DataModel.Wires
@@ -14,15 +10,14 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
         public float X { get; set; }
         public float X0 { get; set; }
 
-        public SeriesCompensator(int globalId) : base(globalId) { }
+        public SeriesCompensator(long globalId) : base(globalId) { }
 
         public override bool Equals(object obj)
         {
             if (base.Equals(obj))
             {
-                Equipment x = (Equipment)obj;
-                return ((x.IsUnderground == this.IsUnderground) &&
-                        (x.IsPrivate == this.IsPrivate));
+                SeriesCompensator x = (SeriesCompensator)obj;
+                return ( (x.R == R) && (x.R0 == R0) && (x.X == X) && (x.X0 == X0) );
             }
             else
             {

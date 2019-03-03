@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace FTN.Services.NetworkModelService
 {
-    public class NetworkModel
+	public class NetworkModel
 	{
 		/// <summary>
 		/// Dictionaru which contains all data: Key - DMSType, Value - Container
@@ -36,17 +36,17 @@ namespace FTN.Services.NetworkModelService
 		{
 			DMSType type = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(globalId);
 
-		    if (ContainerExists(type))
-		    {
+			if (ContainerExists(type))
+			{
 				Container container = GetContainer(type);
 
 				if (container.EntityExists(globalId))
 				{
 					return true;
 				}
-		    }
+			}
 
-		    return false;
+			return false;
 		}
 
 		public IdentifiedObject GetEntity(long globalId)
@@ -283,10 +283,10 @@ namespace FTN.Services.NetworkModelService
 			return updateResult;
 		}
 
-        /// <summary>
-        /// Inserts entity into the network model.
-        /// </summary>
-        /// <param name="rd">Description of the resource that should be inserted</param>        
+		/// <summary>
+		/// Inserts entity into the network model.
+		/// </summary>
+		/// <param name="rd">Description of the resource that should be inserted</param>        
 		private void InsertEntity(ResourceDescription rd)
 		{
 			if (rd == null)
@@ -349,7 +349,7 @@ namespace FTN.Services.NetworkModelService
 
 								if (!EntityExists(targetGlobalId))
 								{
-									string message = string.Format("Failed to get target entity with GID: 0x{0:X16}. {1}", targetGlobalId);
+									string message = string.Format("Failed to get target entity with GID: 0x{0:X16}.", targetGlobalId);
 									throw new Exception(message);
 								}
 
@@ -409,13 +409,13 @@ namespace FTN.Services.NetworkModelService
 					{
 						if (property.Type == PropertyType.Reference)
 						{
-                            long oldTargetGlobalId = io.GetProperty(property.Id).AsReference();
-                            
-                            if (oldTargetGlobalId != 0)
-                            {
-                                IdentifiedObject oldTargetEntity = GetEntity(oldTargetGlobalId);
-                                oldTargetEntity.RemoveReference(property.Id, globalId);
-                            }
+							long oldTargetGlobalId = io.GetProperty(property.Id).AsReference();
+							
+							if (oldTargetGlobalId != 0)
+							{
+								IdentifiedObject oldTargetEntity = GetEntity(oldTargetGlobalId);
+								oldTargetEntity.RemoveReference(property.Id, globalId);
+							}
 
 							// updating reference of entity
 							long targetGlobalId = property.AsReference();
@@ -428,8 +428,8 @@ namespace FTN.Services.NetworkModelService
 									throw new Exception(message);
 								}
 
-                                IdentifiedObject targetEntity = GetEntity(targetGlobalId);
-                                targetEntity.AddReference(property.Id, globalId);
+								IdentifiedObject targetEntity = GetEntity(targetGlobalId);
+								targetEntity.AddReference(property.Id, globalId);
 							}
 
 							// update value of the property in specified entity
@@ -484,18 +484,18 @@ namespace FTN.Services.NetworkModelService
 				// check if entity could be deleted (if it is not referenced by any other entity)
 				if (io.IsReferenced)
 				{
-                    Dictionary<ModelCode, List<long>> references = new Dictionary<ModelCode,List<long>>();
-                    io.GetReferences(references, TypeOfReference.Target);
+					Dictionary<ModelCode, List<long>> references = new Dictionary<ModelCode,List<long>>();
+					io.GetReferences(references, TypeOfReference.Target);
 
-                    StringBuilder sb = new StringBuilder();
-                    
-                    foreach(KeyValuePair<ModelCode, List<long>> kvp in references)
-                    {
-                        foreach (long referenceGlobalId in kvp.Value)
-                        {
-                            sb.AppendFormat("0x{0:x16}, ", referenceGlobalId);
-                        }
-                    }
+					StringBuilder sb = new StringBuilder();
+					
+					foreach(KeyValuePair<ModelCode, List<long>> kvp in references)
+					{
+						foreach (long referenceGlobalId in kvp.Value)
+						{
+							sb.AppendFormat("0x{0:x16}, ", referenceGlobalId);
+						}
+					}
 
 					string message = String.Format("Failed to delete entity (GID = 0x{0:x16}) because it is referenced by entities with GIDs: {1}.", globalId, sb.ToString());
 					CommonTrace.WriteTrace(CommonTrace.TraceError, message);
@@ -706,10 +706,10 @@ namespace FTN.Services.NetworkModelService
 		{
 			List<Delta> result = new List<Delta>();
 
-            if (!File.Exists(Config.Instance.ConnectionString))
-            {
-                return result;
-            }
+			if (!File.Exists(Config.Instance.ConnectionString))
+			{
+				return result;
+			}
 
 			FileStream fs = new FileStream(Config.Instance.ConnectionString, FileMode.OpenOrCreate, FileAccess.Read);
 			fs.Seek(0, SeekOrigin.Begin);

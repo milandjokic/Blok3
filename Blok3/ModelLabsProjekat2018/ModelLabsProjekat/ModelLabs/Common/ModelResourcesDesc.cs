@@ -4,17 +4,17 @@ using System.Linq;
 
 namespace FTN.Common
 {
-    public class ResourcePropertiesDesc
+	public class ResourcePropertiesDesc
 	{
 		/// <summary>
 		/// Code of the class type.
 		/// </summary>
-		private ModelCode resourceId;
+		public ModelCode ResourceId { get; }
 
 		/// <summary>
 		/// Name of the class type.
 		/// </summary>
-		private string resourceName;
+		public string ResourceName { get; }
 
 		/// <summary>
 		/// Collection of the property codes for class type.
@@ -27,36 +27,14 @@ namespace FTN.Common
 		/// <param name="resourceId">Model type code</param>
 		public ResourcePropertiesDesc(ModelCode resourceId)
 		{
-			this.resourceId = resourceId;
-			this.resourceName = resourceId.ToString();			
+			ResourceId = resourceId;
+			ResourceName = resourceId.ToString();			
 		}
 
 		public ResourcePropertiesDesc(ModelCode resourceId, string resourceName)
 		{
-			this.resourceId = resourceId;
-			this.resourceName = resourceName;
-		}
-		
-		/// <summary>
-		/// Gets code of the class type.
-		/// </summary>
-		public ModelCode ResourceId
-		{
-			get
-			{
-				return resourceId;
-			}
-		}
-
-		/// <summary>
-		/// Gets name of the class type.
-		/// </summary>
-		public string ResourceName
-		{
-			get
-			{
-				return resourceName;
-			}
+			ResourceId = resourceId;
+			ResourceName = resourceName;
 		}
 
 		/// <summary>
@@ -96,7 +74,7 @@ namespace FTN.Common
 				// if this is true, the property ID is from core
 				if (propertyIds[propertyId] == null)
 				{
-					return ((ModelCode)propertyId).ToString();
+					return propertyId.ToString();
 				}
 				else // if this is true, the property ID is from extensibility
 				{
@@ -104,7 +82,7 @@ namespace FTN.Common
 				}
 			}
 
-			string message = String.Format("Specified property ( ID = {0} ) does not exists for {1} resource.", (ModelCode)propertyId, resourceName);
+			string message = string.Format("Specified property ( ID = {0} ) does not exists for {1} resource.", (ModelCode)propertyId, ResourceName);
 			CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 			throw new Exception(message);
 		}
@@ -140,42 +118,32 @@ namespace FTN.Common
 		/// <summary>
 		/// Insert order for Data model.
 		/// </summary>
-		private List<ModelCode> typeIdsInInsertOrder = new List<ModelCode>();
+		public List<ModelCode> TypeIdsInInsertOrder { get; } = new List<ModelCode>();
 
 		/// <summary>
 		/// List of non abstract class Ids.
 		/// </summary>
-		private List<ModelCode> nonAbstractClassIds = new List<ModelCode>();
+		public List<ModelCode> NonAbstractClassIds { get; set; } = new List<ModelCode>();
 
 		/// <summary>
 		/// HashSet of not settable property Ids.
 		/// </summary>
-		private HashSet<ModelCode> notSettablePropertyIds = new HashSet<ModelCode>(new ModelCodeComparer());
+		public HashSet<ModelCode> NotSettablePropertyIds { get; set; } = new HashSet<ModelCode>(new ModelCodeComparer());
 
 		/// <summary>
 		/// Dictionary of not accessible property Ids.
 		/// </summary>
-		private Dictionary<ModelCode, bool> notAccessiblePropertyIds = new Dictionary<ModelCode, bool>(new ModelCodeComparer());
+		public Dictionary<ModelCode, bool> NotAccessiblePropertyIds { get; set; } = new Dictionary<ModelCode, bool>(new ModelCodeComparer());
 
 		/// <summary>
 		/// All ModelCodes, codes and from ModelCode enum end from extensibility
 		/// </summary>
-		private HashSet<ModelCode> allModelCodes = new HashSet<ModelCode>(new ModelCodeComparer());
+		public HashSet<ModelCode> AllModelCodes { get; } = new HashSet<ModelCode>(new ModelCodeComparer());
 
 		/// <summary>
 		/// All types, codes and from DMSType enum end from extensibility
 		/// </summary>
-		private HashSet<DMSType> allDMSTypes = new HashSet<DMSType>(new DMSTypeComparer());
-
-		public HashSet<ModelCode> AllModelCodes
-		{
-			get { return allModelCodes; }
-		}
-
-		public HashSet<DMSType> AllDMSTypes
-		{
-			get { return allDMSTypes; }
-		}
+		public HashSet<DMSType> AllDMSTypes { get; } = new HashSet<DMSType>(new DMSTypeComparer());
 
 		/// <summary>
 		/// Initializes a new instance of the ModelResourcesDesc class.
@@ -188,7 +156,7 @@ namespace FTN.Common
 		private void Initialize()
 		{
 			// populating model type and property descriptions
-			this.resourceDescs = new Dictionary<long, ResourcePropertiesDesc>();
+			resourceDescs = new Dictionary<long, ResourcePropertiesDesc>();
 
 			ResourcePropertiesDesc desc = null;
 
@@ -199,12 +167,12 @@ namespace FTN.Common
 
 			foreach (ModelCode code in Enum.GetValues(typeof(ModelCode)))
 			{
-				allModelCodes.Add(code);
+				AllModelCodes.Add(code);
 			}
 
 			foreach (DMSType type in Enum.GetValues(typeof(DMSType)))
 			{
-				allDMSTypes.Add(type);
+				AllDMSTypes.Add(type);
 			}
 
 
@@ -212,7 +180,7 @@ namespace FTN.Common
 
 			//// Get all class model codes for all services and for all classes, abstract or not. Extensibility included
 			List<ModelCode> classIds = new List<ModelCode>();
-			foreach (ModelCode code in allModelCodes)
+			foreach (ModelCode code in AllModelCodes)
 			{
 				// don't insert attribute codes
 				if (((long)code & (long)ModelCodeMask.MASK_ATTRIBUTE_TYPE) == 0)
@@ -230,14 +198,14 @@ namespace FTN.Common
 				//// Initialize leafs
 				if (((long)classId & (long)ModelCodeMask.MASK_TYPE) != 0)
 				{
-					nonAbstractClassIds.Add(classId);
+					NonAbstractClassIds.Add(classId);
 				}
 
 				//// Initialize resourceDescription map
-				desc = this.AddResourceDesc(classId);
+				desc = AddResourceDesc(classId);
 				long classIdMask = unchecked((long)0xffffffff00000000);
 
-				foreach (ModelCode propertyId in allModelCodes)
+				foreach (ModelCode propertyId in AllModelCodes)
 				{
 					PropertyType propertyType = Property.GetPropertyType(propertyId);
 
@@ -264,7 +232,7 @@ namespace FTN.Common
 			string[] modelCodeNamesFromCore = Enum.GetNames(typeof(ModelCode));
 
 			classIds = new List<ModelCode>();
-			foreach (ModelCode code in allModelCodes)
+			foreach (ModelCode code in AllModelCodes)
 			{
 				// don't insert attribute codes
 				if (((long)code & (long)ModelCodeMask.MASK_ATTRIBUTE_TYPE) == 0)
@@ -274,18 +242,18 @@ namespace FTN.Common
 			}
 
 			//// Initialize DMSType 2 ModelCode map
-			foreach (DMSType t in allDMSTypes)
+			foreach (DMSType t in AllDMSTypes)
 			{
 
 				DMSType type = t & DMSType.MASK_TYPE;
 
 				////  if DMSType is not addad and it is not mask
-				if (!this.type2modelCode.ContainsKey(type) && type != DMSType.MASK_TYPE)
+				if (!type2modelCode.ContainsKey(type) && type != DMSType.MASK_TYPE)
 				{
 					//// DMSTypes that have same name as appropriete model code
 					if (modelCodeNamesFromCore.Contains(type.ToString()))
 					{
-						this.type2modelCode[type] = GetModelCodeFromTypeForCore(type);
+						type2modelCode[type] = GetModelCodeFromTypeForCore(type);
 					}
 					else // for DMSTypes which don't have it's ModelCode with same name or are not in core
 					{
@@ -295,7 +263,7 @@ namespace FTN.Common
 							{
 								if (GetTypeFromModelCode(classId) == type)
 								{
-									this.type2modelCode[type] = classId;
+									type2modelCode[type] = classId;
 									break;
 								}
 							}
@@ -306,44 +274,6 @@ namespace FTN.Common
 			}
 
 			# endregion Initialize type 2 model code map
-		}
-
-		/// <summary>
-		/// Gets insert order for Data model.
-		/// </summary>		
-		public List<ModelCode> TypeIdsInInsertOrder
-		{
-			get
-			{
-				return typeIdsInInsertOrder;
-			}
-		}
-
-		/// <summary>
-		/// Gets list of non abstract class Ids.
-		/// </summary>
-		public List<ModelCode> NonAbstractClassIds
-		{
-			get { return nonAbstractClassIds; }
-			set { nonAbstractClassIds = value; }
-		}
-
-		/// <summary>
-		/// Gets dictionary of not settable property Ids.
-		/// </summary>
-		public HashSet<ModelCode> NotSettablePropertyIds
-		{
-			get { return notSettablePropertyIds; }
-			set { notSettablePropertyIds = value; }
-		}
-
-		/// <summary>
-		/// Gets dictionary of not accessible property Ids.
-		/// </summary>
-		public Dictionary<ModelCode, bool> NotAccessiblePropertyIds
-		{
-			get { return notAccessiblePropertyIds; }
-			set { notAccessiblePropertyIds = value; }
 		}
 
 		public static DMSType GetTypeFromModelCode(ModelCode code)
@@ -426,7 +356,7 @@ namespace FTN.Common
 		{
 			List<DMSType> children = new List<DMSType>();
 
-			foreach (ModelCode leafCM in allModelCodes)
+			foreach (ModelCode leafCM in AllModelCodes)
 			{
 				//// if it is not property code and it is leaf code and it is inhereted from submited type
 				if (((long)leafCM & (long)ModelCodeMask.MASK_ATTRIBUTE_TYPE) == 0 && ((long)leafCM & (long)ModelCodeMask.MASK_TYPE) != 0 && InheritsFrom(entityType, leafCM))
@@ -475,14 +405,14 @@ namespace FTN.Common
 		public ResourcePropertiesDesc AddResourceDesc(ModelCode resourceId)
 		{
 			ResourcePropertiesDesc desc = new ResourcePropertiesDesc(resourceId);
-			this.resourceDescs[((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY)] = desc;
+			resourceDescs[((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY)] = desc;
 			return desc;
 		}
 
 		public ResourcePropertiesDesc AddResourceDesc(ModelCode resourceId, string resourceName)
 		{
 			ResourcePropertiesDesc desc = new ResourcePropertiesDesc(resourceId, resourceName);
-			this.resourceDescs[((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY)] = desc;
+			resourceDescs[((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY)] = desc;
 			return desc;
 		}
 
@@ -493,7 +423,7 @@ namespace FTN.Common
 		/// <param name="desc">Model type description</param>
 		public void AddResourceDesc(ModelCode resourceId, ResourcePropertiesDesc desc)
 		{
-			this.resourceDescs[((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY)] = desc;
+			resourceDescs[((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY)] = desc;
 		}
 
 		/// <summary>
@@ -515,10 +445,10 @@ namespace FTN.Common
 		{
 			long temp = ((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY);
 
-            if (!resourceDescs.ContainsKey(temp))
-            {
-                throw new Exception(string.Format("Invalid Model Code: {0}", resourceId));
-            }
+			if (!resourceDescs.ContainsKey(temp))
+			{
+				throw new Exception(string.Format("Invalid Model Code: {0}", resourceId));
+			}
 
 			return resourceDescs[temp];
 		}
@@ -547,12 +477,12 @@ namespace FTN.Common
 			long oldestAncestorId = typeIdLong & (long)ModelCodeMask.MASK_FIRSTNBL;
 			long maskDelNbls = (long)ModelCodeMask.MASK_DELFROMNBL8;
 			long maskfNbl = 0x0000000f00000000;
-			long ancestorId = (long)typeIdLong & maskDelNbls;
+			long ancestorId = typeIdLong & maskDelNbls;
 			long ancestorIdOld = 0;
 			while (ancestorId != oldestAncestorId)
 			{
 				long ancestorIdF = ancestorId & maskfNbl;
-				if (ancestorId != (long)typeIdLong && (ancestorId & maskfNbl) != maskfNbl && ResourceExistsForType(ancestorId))
+				if (ancestorId != typeIdLong && (ancestorId & maskfNbl) != maskfNbl && ResourceExistsForType(ancestorId))
 				{
 					ancestors.Insert(0, resourceDescs[ancestorId].ResourceId);
 				}
@@ -563,7 +493,7 @@ namespace FTN.Common
 				ancestorId &= maskDelNbls;
 			}
 
-			if (oldestAncestorId != (long)typeIdLong && ResourceExistsForType(oldestAncestorId))
+			if (oldestAncestorId != typeIdLong && ResourceExistsForType(oldestAncestorId))
 			{
 				ancestors.Insert(0, resourceDescs[oldestAncestorId].ResourceId);
 			}
@@ -578,13 +508,13 @@ namespace FTN.Common
 		{
 			List<ModelCode> properties = new List<ModelCode>();
 
-			properties.AddRange(this.GetResourcePropertiesDesc(classId).PropertyIds);
+			properties.AddRange(GetResourcePropertiesDesc(classId).PropertyIds);
 
 			int i = 0;
 			while (i < properties.Count)
 			{
 				ModelCode propertyId = properties[i];
-				if (notAccessiblePropertyIds.ContainsKey(propertyId))
+				if (NotAccessiblePropertyIds.ContainsKey(propertyId))
 				{
 					properties.RemoveAt(i);
 				}
@@ -609,17 +539,17 @@ namespace FTN.Common
 
 			this.GetResourceAncestors(code, ref ancestorIds);
 
-			properties.AddRange(this.GetResourcePropertiesDesc(code).PropertyIds);
+			properties.AddRange(GetResourcePropertiesDesc(code).PropertyIds);
 			foreach (ModelCode ancestorId in ancestorIds)
 			{
-				properties.AddRange(this.GetResourcePropertiesDesc(ancestorId).PropertyIds);
+				properties.AddRange(GetResourcePropertiesDesc(ancestorId).PropertyIds);
 			}
 
 			int i = 0;
 			while (i < properties.Count)
 			{
 				ModelCode propertyId = properties[i];
-				if (notAccessiblePropertyIds.ContainsKey(propertyId))
+				if (NotAccessiblePropertyIds.ContainsKey(propertyId))
 				{
 					properties.RemoveAt(i);
 				}
@@ -637,12 +567,12 @@ namespace FTN.Common
 			List<ModelCode> properties = new List<ModelCode>();
 			List<ModelCode> ancestorIds = new List<ModelCode>();
 
-			this.GetResourceAncestors(code, ref ancestorIds);
+			GetResourceAncestors(code, ref ancestorIds);
 
-			properties.AddRange(this.GetResourcePropertiesDesc(code).PropertyIds);
+			properties.AddRange(GetResourcePropertiesDesc(code).PropertyIds);
 			foreach (ModelCode ancestorId in ancestorIds)
 			{
-				properties.AddRange(this.GetResourcePropertiesDesc(ancestorId).PropertyIds);
+				properties.AddRange(GetResourcePropertiesDesc(ancestorId).PropertyIds);
 			}
 
 			return properties;
@@ -715,7 +645,7 @@ namespace FTN.Common
 			while (i < properties.Count)
 			{
 				ModelCode propertyId = properties[i];
-				if (notSettablePropertyIds.Contains(propertyId) || Property.GetPropertyType(propertyId) == PropertyType.ReferenceVector)
+				if (NotSettablePropertyIds.Contains(propertyId) || Property.GetPropertyType(propertyId) == PropertyType.ReferenceVector)
 				{
 					properties.RemoveAt(i);
 				}
@@ -804,7 +734,7 @@ namespace FTN.Common
 			DMSType type = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(id);
 
 			ModelCode modelCode;
-			if (this.type2modelCode.TryGetValue(type, out modelCode))
+			if (type2modelCode.TryGetValue(type, out modelCode))
 			{
 				return modelCode;
 			}
@@ -831,12 +761,12 @@ namespace FTN.Common
 				
 		public bool ContainsModelCode(ModelCode modelCode)
 		{
-			return allModelCodes.Contains(modelCode);
+			return AllModelCodes.Contains(modelCode);
 		}
 
 		public bool ContainsModelCode(DMSType dmsType)
 		{
-			return allDMSTypes.Contains(dmsType);
+			return AllDMSTypes.Contains(dmsType);
 		}
 
 		/// <summary>
@@ -861,14 +791,23 @@ namespace FTN.Common
 
 		# region Initialization of metadata
 
-		private void InitializeTypeIdsInInsertOrder()
-		{			
-					
+		private void InitializeTypeIdsInInsertOrder() // DONE
+		{
+			TypeIdsInInsertOrder.Add(ModelCode.PERLENSEQIMP);
+			TypeIdsInInsertOrder.Add(ModelCode.SUBGEOREG);
+			TypeIdsInInsertOrder.Add(ModelCode.SERCOMP);
+			TypeIdsInInsertOrder.Add(ModelCode.DCLINESEG);
+			TypeIdsInInsertOrder.Add(ModelCode.ACLINESEG);
+			TypeIdsInInsertOrder.Add(ModelCode.LINE);
+
 		}
 
-		private void InitializeNotSettablePropertyIds()
-		{			
-			
+		private void InitializeNotSettablePropertyIds() // DONE
+		{
+			NotSettablePropertyIds.Add(ModelCode.IDOBJ_GID);
+			NotSettablePropertyIds.Add(ModelCode.EQUIPCONT_EQUIPMENTS);
+			NotSettablePropertyIds.Add(ModelCode.SUBGEOREG_LINES);
+			NotSettablePropertyIds.Add(ModelCode.PERLENIMP_ACLINESEGS);
 		}
 	
 		# endregion Initialization of metadata
@@ -938,7 +877,6 @@ namespace FTN.Common
 		# endregion Switching between enums and values
 
 	}
-
 
 	#region utility
 
