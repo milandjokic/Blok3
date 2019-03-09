@@ -9,30 +9,30 @@ using System.Text;
 
 namespace CIM.Model
 {
-    public class ConcreteModelBuilder
+	public class ConcreteModelBuilder
 	{
-        private enum MessageLevel
-        {
-            INFO,
-            ERROR,
-            WARNING
-        }
-        
-        private ConcreteModelBuildingResult result;
-        private string activeNamespace;
-        private Dictionary<string, List<string>> missingValuesMap = new Dictionary<string, List<string>>();
-        
+		private enum MessageLevel
+		{
+			INFO,
+			ERROR,
+			WARNING
+		}
+		
+		private ConcreteModelBuildingResult result;
+		private string activeNamespace;
+		private Dictionary<string, List<string>> missingValuesMap = new Dictionary<string, List<string>>();
+		
 		#region Public methods
 
-        public Dictionary<string, List<string>> GetMissingValuesMap()
-        {
-            return missingValuesMap;
-        }
+		public Dictionary<string, List<string>> GetMissingValuesMap()
+		{
+			return missingValuesMap;
+		}
 
-        public string ActiveNamespace
-        {
-            get { return activeNamespace; }
-        }
+		public string ActiveNamespace
+		{
+			get { return activeNamespace; }
+		}
 
 		/// <summary>
 		/// Creates ConcreteModel from CIMModel using classes from assembly
@@ -41,28 +41,28 @@ namespace CIM.Model
 		/// <param name="assembly">contains classes for model</param>
 		public ConcreteModelBuildingResult GenerateModel(CIMModel CIM_Model, Assembly assembly, string type, ref ConcreteModel model)
 		{
-            //model = new ConcreteModel();
-            result = new ConcreteModelBuildingResult();
-            activeNamespace = type;
+			//model = new ConcreteModel();
+			result = new ConcreteModelBuildingResult();
+			activeNamespace = type;
  
 			if(CIM_Model != null && assembly != null)
 			{
-                try
-                {
-                    //two iterations 
-                    //- first - only simple value/enumerations and instantiate the class
-                    //- second - create connections
-                    InstantiateClassesWithSimpleValues(CIM_Model, assembly, ref model);
+				try
+				{
+					//two iterations 
+					//- first - only simple value/enumerations and instantiate the class
+					//- second - create connections
+					InstantiateClassesWithSimpleValues(CIM_Model, assembly, ref model);
 
-                    //second iteration for setting up references (excluding dataTypes)GOES HERE
-                    ConnectModelElements(CIM_Model, assembly, ref model);
+					//second iteration for setting up references (excluding dataTypes)GOES HERE
+					ConnectModelElements(CIM_Model, assembly, ref model);
 
-                    result.MissingValues = GenerateMissingMandatoryValuesReport(model, assembly);
-                }
-                catch(Exception ex)
-                {
-                    OnMessage(ex.Message, MessageLevel.ERROR);
-                }
+					result.MissingValues = GenerateMissingMandatoryValuesReport(model, assembly);
+				}
+				catch(Exception ex)
+				{
+					OnMessage(ex.Message, MessageLevel.ERROR);
+				}
 			}
 			else
 			{
@@ -71,185 +71,185 @@ namespace CIM.Model
 
 			return result;
 		}
-        #endregion
+		#endregion
 
-        #region MissingMandatoryValues
-        private StringBuilder GenerateMissingMandatoryValuesReport(ConcreteModel model, Assembly assembly)
-        {
-            StringBuilder report = new StringBuilder();
-            //extract names
-            Dictionary<string, string> names = GetNames(model.ModelMap, assembly);
+		#region MissingMandatoryValues
+		private StringBuilder GenerateMissingMandatoryValuesReport(ConcreteModel model, Assembly assembly)
+		{
+			StringBuilder report = new StringBuilder();
+			//extract names
+			Dictionary<string, string> names = GetNames(model.ModelMap, assembly);
 
-            foreach (KeyValuePair<string, SortedDictionary<string, object>> kv in model.ModelMap)
-            {
-                Type type = assembly.GetType(kv.Key);
-                List<PropertyInfo> pInfoList = GetIsMandatoryProperties(type);
+			foreach (KeyValuePair<string, SortedDictionary<string, object>> kv in model.ModelMap)
+			{
+				Type type = assembly.GetType(kv.Key);
+				List<PropertyInfo> pInfoList = GetIsMandatoryProperties(type);
 
-                foreach(PropertyInfo pInfo in pInfoList)
-                {
-                    string propertyName = pInfo.Name.Substring("is".Length);
-                    propertyName = propertyName.Substring(0,propertyName.Length - "mandatory".Length);
-                    PropertyInfo hasValueProp = type.GetProperty(propertyName + "HasValue");
+				foreach(PropertyInfo pInfo in pInfoList)
+				{
+					string propertyName = pInfo.Name.Substring("is".Length);
+					propertyName = propertyName.Substring(0,propertyName.Length - "mandatory".Length);
+					PropertyInfo hasValueProp = type.GetProperty(propertyName + "HasValue");
 
-                    bool firstOccurance = true;
-                    foreach (KeyValuePair<string, object> idObjectPair in kv.Value) 
-                    {
-                        if (idObjectPair.Value != null) 
-                        {
-                            if (!(bool)hasValueProp.GetValue(idObjectPair.Value, null)) 
-                            {
-                                //no value so add to report
-                                if (firstOccurance) 
-                                {
-                                    report.AppendLine("[WARNING] Missing mandatory property " + type.Name + "." + propertyName + " on following entities:");
-                                    if (this.missingValuesMap.ContainsKey(idObjectPair.Key))
-                                    {
-                                        if (!this.missingValuesMap[idObjectPair.Key].Contains(propertyName))
-                                        {
-                                            this.missingValuesMap[idObjectPair.Key].Add(propertyName);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        this.missingValuesMap.Add(idObjectPair.Key, new List<string>() { propertyName });
-                                    }
+					bool firstOccurance = true;
+					foreach (KeyValuePair<string, object> idObjectPair in kv.Value) 
+					{
+						if (idObjectPair.Value != null) 
+						{
+							if (!(bool)hasValueProp.GetValue(idObjectPair.Value, null)) 
+							{
+								//no value so add to report
+								if (firstOccurance) 
+								{
+									report.AppendLine("[WARNING] Missing mandatory property " + type.Name + "." + propertyName + " on following entities:");
+									if (this.missingValuesMap.ContainsKey(idObjectPair.Key))
+									{
+										if (!this.missingValuesMap[idObjectPair.Key].Contains(propertyName))
+										{
+											this.missingValuesMap[idObjectPair.Key].Add(propertyName);
+										}
+									}
+									else
+									{
+										this.missingValuesMap.Add(idObjectPair.Key, new List<string>() { propertyName });
+									}
 
-                                    firstOccurance = false;
-                                }
+									firstOccurance = false;
+								}
 
-                                if (this.missingValuesMap.ContainsKey(idObjectPair.Key))
-                                {
-                                    if (!this.missingValuesMap[idObjectPair.Key].Contains(propertyName))
-                                    {
-                                        this.missingValuesMap[idObjectPair.Key].Add(propertyName);
-                                    }
-                                }
-                                else
-                                {
-                                    this.missingValuesMap.Add(idObjectPair.Key, new List<string>() { propertyName });
-                                }
+								if (this.missingValuesMap.ContainsKey(idObjectPair.Key))
+								{
+									if (!this.missingValuesMap[idObjectPair.Key].Contains(propertyName))
+									{
+										this.missingValuesMap[idObjectPair.Key].Add(propertyName);
+									}
+								}
+								else
+								{
+									this.missingValuesMap.Add(idObjectPair.Key, new List<string>() { propertyName });
+								}
 
-                                report.AppendLine("\t - ID: " + idObjectPair.Key + ";" + GetName(names, idObjectPair.Key));
-                            }
-                        }
-                    }
-                }
-            }
-            return report;
-        }
+								report.AppendLine("\t - ID: " + idObjectPair.Key + ";" + GetName(names, idObjectPair.Key));
+							}
+						}
+					}
+				}
+			}
+			return report;
+		}
 
-        private Dictionary<string, string> GetNames(SortedDictionary<string, SortedDictionary<string, object>> modelMap, Assembly assembly)
-        {
-            Dictionary<string, string> idToNames = new Dictionary<string, string>();
-            SortedDictionary<string, object> names;
-            Type nameType = assembly.GetType(ActiveNamespace + ".Name");
-            if (nameType != null)
-            {
-                Type idClassType = assembly.GetType(ActiveNamespace + ".IDClass");
-                PropertyInfo namePI = nameType.GetProperty("NameP");
-                PropertyInfo nameIO = nameType.GetProperty("IdentifiedObject");
-                PropertyInfo idPI = idClassType.GetProperty("ID");
-                if (modelMap.ContainsKey(ActiveNamespace + ".Name"))
-                {
-                    names = modelMap[ActiveNamespace + ".Name"];
-                    foreach (KeyValuePair<string, object> namePair in names)
-                    {
-                        object name = namePair.Value;
-                        string nameValue = namePI.GetValue(name, null).ToString();
-                        object referenced = nameIO.GetValue(name, null);
-                        if (!string.IsNullOrWhiteSpace(nameValue) && referenced != null)
-                        {
-                            string refID = idPI.GetValue(referenced, null).ToString();
-                            if (!string.IsNullOrWhiteSpace(refID))
-                            {
+		private Dictionary<string, string> GetNames(SortedDictionary<string, SortedDictionary<string, object>> modelMap, Assembly assembly)
+		{
+			Dictionary<string, string> idToNames = new Dictionary<string, string>();
+			SortedDictionary<string, object> names;
+			Type nameType = assembly.GetType(ActiveNamespace + ".Name");
+			if (nameType != null)
+			{
+				Type idClassType = assembly.GetType(ActiveNamespace + ".IDClass");
+				PropertyInfo namePI = nameType.GetProperty("NameP");
+				PropertyInfo nameIO = nameType.GetProperty("IdentifiedObject");
+				PropertyInfo idPI = idClassType.GetProperty("ID");
+				if (modelMap.ContainsKey(ActiveNamespace + ".Name"))
+				{
+					names = modelMap[ActiveNamespace + ".Name"];
+					foreach (KeyValuePair<string, object> namePair in names)
+					{
+						object name = namePair.Value;
+						string nameValue = namePI.GetValue(name, null).ToString();
+						object referenced = nameIO.GetValue(name, null);
+						if (!string.IsNullOrWhiteSpace(nameValue) && referenced != null)
+						{
+							string refID = idPI.GetValue(referenced, null).ToString();
+							if (!string.IsNullOrWhiteSpace(refID))
+							{
 								if (!idToNames.ContainsKey(refID))
 								{
 									idToNames.Add(refID, nameValue);
 								}
-                            }
-                        }
-                    }
-                }
-            }
-            return idToNames;
-        }
+							}
+						}
+					}
+				}
+			}
+			return idToNames;
+		}
 
-        private List<PropertyInfo> GetIsMandatoryProperties(Type type)
-        {
-            List<PropertyInfo> pList = new List<PropertyInfo>();
-            List<PropertyInfo> pResultList = new List<PropertyInfo>();
-            Type tempType = type;
-            while (tempType.BaseType != null) 
-            {
-                foreach (PropertyInfo info in tempType.GetProperties()) 
-                {
-                    if (info.Name.StartsWith("Is") && info.Name.EndsWith("Mandatory") && string.Compare(info.Name,"IsIDMandatory")!=0) 
-                    {
-                        pList.Add(info);
-                    }
-                }
-                tempType = tempType.BaseType;
-            }
+		private List<PropertyInfo> GetIsMandatoryProperties(Type type)
+		{
+			List<PropertyInfo> pList = new List<PropertyInfo>();
+			List<PropertyInfo> pResultList = new List<PropertyInfo>();
+			Type tempType = type;
+			while (tempType.BaseType != null) 
+			{
+				foreach (PropertyInfo info in tempType.GetProperties()) 
+				{
+					if (info.Name.StartsWith("Is") && info.Name.EndsWith("Mandatory") && string.Compare(info.Name,"IsIDMandatory")!=0) 
+					{
+						pList.Add(info);
+					}
+				}
+				tempType = tempType.BaseType;
+			}
 
 
-            foreach (PropertyInfo pInfo in pList)
-            {
-                if (pInfo.Name.StartsWith("Is") && pInfo.Name.EndsWith("Mandatory"))
-                {
-                    if ((bool)pInfo.GetValue(null, null))
-                    {
-                        pResultList.Add(pInfo);
-                    }
-                }
-            }
+			foreach (PropertyInfo pInfo in pList)
+			{
+				if (pInfo.Name.StartsWith("Is") && pInfo.Name.EndsWith("Mandatory"))
+				{
+					if ((bool)pInfo.GetValue(null, null))
+					{
+						pResultList.Add(pInfo);
+					}
+				}
+			}
 
-            return pResultList;
-        }
+			return pResultList;
+		}
 
-        private string GetName(Dictionary<string, string> idToNames, string id)
-        {
-            if (idToNames.ContainsKey(id))
-            {
-                return   "Tag ID: " + idToNames[id];
-            }
-            return string.Empty;
-        }
+		private string GetName(Dictionary<string, string> idToNames, string id)
+		{
+			if (idToNames.ContainsKey(id))
+			{
+				return   "Tag ID: " + idToNames[id];
+			}
+			return string.Empty;
+		}
 
-        private List<PropertyInfo> GetHasValueProperties(Type type)
-        {
-            List<PropertyInfo> pList = new List<PropertyInfo>();
-            //pList.AddRange(type.GetProperties());
-            foreach (PropertyInfo pInfo in type.GetProperties())
-            {
-                if (pInfo.Name.EndsWith("HasValue"))
-                {
-                    pList.Add(pInfo);
-                }
-            }
-            return pList;
-        }
+		private List<PropertyInfo> GetHasValueProperties(Type type)
+		{
+			List<PropertyInfo> pList = new List<PropertyInfo>();
+			//pList.AddRange(type.GetProperties());
+			foreach (PropertyInfo pInfo in type.GetProperties())
+			{
+				if (pInfo.Name.EndsWith("HasValue"))
+				{
+					pList.Add(pInfo);
+				}
+			}
+			return pList;
+		}
 
 		#endregion
 
 		#region Support Methods
 
-        private void OnMessage(string message, MessageLevel level)
-        {
-            if (level == MessageLevel.WARNING)
-            {
-                result.WarrningCount++;
+		private void OnMessage(string message, MessageLevel level)
+		{
+			if (level == MessageLevel.WARNING)
+			{
+				result.WarrningCount++;
 				result.Report.AppendLine("WARNING: " + message);
-            }
-            if (level == MessageLevel.ERROR)
-            {
-                result.ErrorCount++;
+			}
+			if (level == MessageLevel.ERROR)
+			{
+				result.ErrorCount++;
 				result.Report.AppendLine("ERROR: " + message);
-            }
+			}
 			if (level == MessageLevel.INFO) 
 			{
 				result.Report.AppendLine(message);
 			}
-        }
+		}
 
 		private void ConnectModelElements(CIMModel CIM_Model, Assembly assembly, ref ConcreteModel concreteModel)
 		{
@@ -264,7 +264,7 @@ namespace CIM.Model
 					if(classType == null)
 					{
 						OnMessage("Element (" + element.ID + ") not found in assembly:" + ActiveNamespace + "."
-                            + type + "  - validation of document failed!", MessageLevel.ERROR);
+							+ type + "  - validation of document failed!", MessageLevel.ERROR);
 						continue;
 					}
 
@@ -285,8 +285,8 @@ namespace CIM.Model
 							PropertyInfo prop = classType.GetProperty(propertyName);
 							if(prop == null)
 							{
-                                OnMessage("Property " + propertyName + " not found in class "
-                                    + element.CIMType + ", elements ID:" + element.ID + "  - validation of document failed!", MessageLevel.ERROR);
+								OnMessage("Property " + propertyName + " not found in class "
+									+ element.CIMType + ", elements ID:" + element.ID + "  - validation of document failed!", MessageLevel.ERROR);
 								continue;
 							}
 							////if it is a list or collection of references
@@ -410,7 +410,7 @@ namespace CIM.Model
 			////FOREACH TYPE IN MODEL
 			foreach(string type in CIM_Model.ModelMap.Keys)
 			{
-                
+				
 				SortedDictionary<string, CIMObject> objects = CIM_Model.ModelMap[type];
 				////FOREACH OBJECT WITH ID THAT BELONGS TO TYPE
 				foreach(string objID in objects.Keys)
@@ -438,12 +438,12 @@ namespace CIM.Model
 					ProcessAttributes(assembly, element, classType, instance);
 
 					////SAVE OBJECT IN MODEL
-                    string insertEl = concreteModel.InsertObjectInModelMap(instance, classType);
-                    if (!string.IsNullOrEmpty(insertEl)) 
-                    {
+					string insertEl = concreteModel.InsertObjectInModelMap(instance, classType);
+					if (!string.IsNullOrEmpty(insertEl)) 
+					{
 
-                        OnMessage(string.Format("Inserting in model error on element ID {0} . Message: {1}", objID, insertEl),MessageLevel.WARNING);
-                    }
+						OnMessage(string.Format("Inserting in model error on element ID {0} . Message: {1}", objID, insertEl),MessageLevel.WARNING);
+					}
 				}
 			}
 		}
@@ -472,7 +472,7 @@ namespace CIM.Model
 				if(prop == null)
 				{
 					OnMessage("Property " + propertyName + " not found in class "
-                        + element.CIMType + " (element ID:" + element.ID + ")" + "  - validation of document failed!" 
+						+ element.CIMType + " (element ID:" + element.ID + ")" + "  - validation of document failed!" 
 						, MessageLevel.ERROR);
 					continue;
 				}
@@ -565,21 +565,21 @@ namespace CIM.Model
 						OnMessage("Referenced object on property: " + prop.DeclaringType + "." + prop.Name + ", elements ID:" + element.ID + " not in model. Referenced: "
 							+ referencedType.ToString() + ", ID:" + referencedID
 							, MessageLevel.WARNING);
-                        string propertyType = StringManipulationManager.ExtractAllAfterSeparator(referencedType.FullName, StringManipulationManager.SeparatorDot);
+						string propertyType = StringManipulationManager.ExtractAllAfterSeparator(referencedType.FullName, StringManipulationManager.SeparatorDot);
 					}
 					////otherwise its DataType and its already set
 				}
 				else
 				{
-                    if (referencedObject.GetType().Equals(referencedType) || referencedObject.GetType().IsSubclassOf(referencedType))
-                    {                        
-                        prop.SetValue(something, referencedObject, null);
-                    }
-                    else
-                    {
-                        string referencedObjectType = StringManipulationManager.ExtractAllAfterSeparator(referencedObject.GetType().FullName, StringManipulationManager.SeparatorDot);
-                        string propertyType = StringManipulationManager.ExtractAllAfterSeparator(referencedType.FullName, StringManipulationManager.SeparatorDot);
-                    }
+					if (referencedObject.GetType().Equals(referencedType) || referencedObject.GetType().IsSubclassOf(referencedType))
+					{                        
+						prop.SetValue(something, referencedObject, null);
+					}
+					else
+					{
+						string referencedObjectType = StringManipulationManager.ExtractAllAfterSeparator(referencedObject.GetType().FullName, StringManipulationManager.SeparatorDot);
+						string propertyType = StringManipulationManager.ExtractAllAfterSeparator(referencedType.FullName, StringManipulationManager.SeparatorDot);
+					}
 				}
 			}
 		}
@@ -596,14 +596,14 @@ namespace CIM.Model
 			{
 				Type referencedType = prop.PropertyType;
 				string referencedID = StringManipulationManager.ExtractAllAfterSeparator(attValue, StringManipulationManager.SeparatorSharp);
-                
-                string refType = referencedType.ToString();
-                if (referencedType.IsGenericType) 
-                {
-                    refType = referencedType.GetGenericArguments()[0].ToString();
-                }
+				
+				string refType = referencedType.ToString();
+				if (referencedType.IsGenericType) 
+				{
+					refType = referencedType.GetGenericArguments()[0].ToString();
+				}
 
-                //DataTypes? what about them if in list - should be a way to determine 
+				//DataTypes? what about them if in list - should be a way to determine 
 				object referencedObject = model.GetObjectByID(referencedID);
 
 				if(referencedObject != null)
@@ -614,19 +614,19 @@ namespace CIM.Model
 					}
 					catch
 					{
-                       
+					   
 						OnMessage("Unsuccessful adding item to list on property: " + prop.DeclaringType + "." + prop.Name
 							+ ", elements ID:" + element.ID + " Referenced: " + refType + ", ID: " + referencedID
 							, MessageLevel.ERROR);
-                        string referencedTypeWithoutPrefix = StringManipulationManager.ExtractAllAfterSeparator(refType, StringManipulationManager.SeparatorDot);
+						string referencedTypeWithoutPrefix = StringManipulationManager.ExtractAllAfterSeparator(refType, StringManipulationManager.SeparatorDot);
 					}
 				}
 				else
 				{
 					OnMessage("Referenced object on property: " + prop.DeclaringType + "." + prop.Name + ", elements ID:" + element.ID + " not in model. Referenced: "
-                            + refType + ", ID:" + referencedID
+							+ refType + ", ID:" + referencedID
 						, MessageLevel.WARNING);
-                    string referencedTypeWithoutPrefix = StringManipulationManager.ExtractAllAfterSeparator(refType, StringManipulationManager.SeparatorDot);
+					string referencedTypeWithoutPrefix = StringManipulationManager.ExtractAllAfterSeparator(refType, StringManipulationManager.SeparatorDot);
 				}
 			}
 		}
@@ -719,9 +719,9 @@ namespace CIM.Model
 					}
 					catch
 					{
-                        OnMessage("Invalid value format in CIM/XML of attribute (DateTime type) to be added to list "
-                            + att.FullName + ", value: " + att.Value + " elements ID: " + element.ID
-                            , MessageLevel.WARNING);
+						OnMessage("Invalid value format in CIM/XML of attribute (DateTime type) to be added to list "
+							+ att.FullName + ", value: " + att.Value + " elements ID: " + element.ID
+							, MessageLevel.WARNING);
 					}
 				}////Everything else goes the same way
 				else
@@ -771,7 +771,7 @@ namespace CIM.Model
 				{
 					try
 					{
-                        prop.SetValue(something, Convert.ChangeType(att.Value, prop.PropertyType, new CultureInfo("en-US")), null);
+						prop.SetValue(something, Convert.ChangeType(att.Value, prop.PropertyType, new CultureInfo("en-US")), null);
 					}
 					catch
 					{

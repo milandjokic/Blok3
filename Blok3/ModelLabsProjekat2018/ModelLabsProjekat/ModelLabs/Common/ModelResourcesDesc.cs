@@ -103,7 +103,7 @@ namespace FTN.Common
 	/// Contains descriptions for model classes, mappings from type to model code 
 	/// and sorted list of type identificators in order that should be followed for insert operations
 	/// </summary>
-	public class ModelResourcesDesc
+	public class ModelResourcesDesc // DONE
 	{
 		/// <summary>
 		/// Dictionary of model type code to model type description mappings.
@@ -796,9 +796,9 @@ namespace FTN.Common
 			TypeIdsInInsertOrder.Add(ModelCode.PERLENSEQIMP);
 			TypeIdsInInsertOrder.Add(ModelCode.SUBGEOREG);
 			TypeIdsInInsertOrder.Add(ModelCode.SERCOMP);
+			TypeIdsInInsertOrder.Add(ModelCode.LINE);
 			TypeIdsInInsertOrder.Add(ModelCode.DCLINESEG);
 			TypeIdsInInsertOrder.Add(ModelCode.ACLINESEG);
-			TypeIdsInInsertOrder.Add(ModelCode.LINE);
 
 		}
 

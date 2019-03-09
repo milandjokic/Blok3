@@ -11,7 +11,13 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 
 		public override bool Equals(object obj)
 		{
-			return base.Equals(obj);
+			if (base.Equals(obj))
+			{
+				Equipment x = (Equipment)obj;
+				return (x.EquipmentContainer == EquipmentContainer);
+			}
+
+			return false;
 		}
 
 		public override int GetHashCode()
@@ -23,17 +29,42 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 
 		public override bool HasProperty(ModelCode property)
 		{
-			return base.HasProperty(property);
+			switch (property)
+			{
+				case ModelCode.EQUIPMENT_EQUIPCONT:
+					return true;
+
+				default:
+					return base.HasProperty(property);
+			}
 		}
 
 		public override void GetProperty(Property property)
 		{
-			base.GetProperty(property);
+			switch (property.Id)
+			{
+				case ModelCode.EQUIPMENT_EQUIPCONT:
+					property.SetValue(EquipmentContainer);
+					break;
+
+				default:
+					base.GetProperty(property);
+					break;
+			}
 		}
 
 		public override void SetProperty(Property property)
 		{
-			base.SetProperty(property);
+			switch (property.Id)
+			{
+				case ModelCode.EQUIPMENT_EQUIPCONT:
+					EquipmentContainer = property.AsReference();
+					break;
+
+				default:
+					base.SetProperty(property);
+					break;
+			}
 		}
 
 		#endregion IAccess implementation

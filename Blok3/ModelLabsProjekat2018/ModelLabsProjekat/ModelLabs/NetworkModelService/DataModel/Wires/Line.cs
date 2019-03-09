@@ -12,7 +12,13 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
 
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            if (base.Equals(obj))
+            {
+                Line x = (Line)obj;
+                return (x.SubGeographicalRegion == SubGeographicalRegion);
+            }
+
+            return false;
         }
 
         public override int GetHashCode()
@@ -24,17 +30,42 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
 
         public override bool HasProperty(ModelCode property)
         {
-            return base.HasProperty(property);
+            switch (property)
+            {
+                case ModelCode.LINE_SUBGEOREG:
+                    return true;
+
+                default:
+                    return base.HasProperty(property);
+            }
         }
 
         public override void GetProperty(Property property)
         {
-            base.GetProperty(property);
+            switch (property.Id)
+            {
+                case ModelCode.LINE_SUBGEOREG:
+                    property.SetValue(SubGeographicalRegion);
+                    break;
+
+                default:
+                    base.GetProperty(property);
+                    break;
+            }
         }
 
         public override void SetProperty(Property property)
         {
-            base.SetProperty(property);
+            switch (property.Id)
+            {
+                case ModelCode.LINE_SUBGEOREG:
+                    SubGeographicalRegion = property.AsReference();
+                    break;
+
+                default:
+                    base.SetProperty(property);
+                    break;
+            }
         }
 
         #endregion IAccess implementation

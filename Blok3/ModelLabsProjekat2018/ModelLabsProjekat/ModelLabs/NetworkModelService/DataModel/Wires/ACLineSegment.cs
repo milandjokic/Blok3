@@ -14,6 +14,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
         public float R0 { get; set; }
         public float X { get; set; }
         public float X0 { get; set; }
+
         public long PerLengthImpedance { get; set; } = 0;
 
         public ACLineSegment(long globalId) : base(globalId) { }
@@ -23,7 +24,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
             if (base.Equals(obj))
             {
                 ACLineSegment x = (ACLineSegment)obj;
-                return ((x.B0ch == B0ch) && (x.Bch == Bch) && (x.G0ch == G0ch) && (x.Gch == Gch) && (x.R == R) && (x.R0 == R0) && (x.X == X) && (x.X0 == X0));
+                return ((x.B0ch == B0ch) && (x.Bch == Bch) && (x.G0ch == G0ch) && (x.Gch == Gch) && (x.R == R) && (x.R0 == R0) && 
+                    (x.X == X) && (x.X0 == X0) && (x.PerLengthImpedance == PerLengthImpedance));
             }
             else
             {
@@ -50,6 +52,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
                 case ModelCode.ACLINESEG_R0:
                 case ModelCode.ACLINESEG_X:
                 case ModelCode.ACLINESEG_X0:
+                case ModelCode.ACLINESEG_PERLENIMP:
                     return true;
 
                 default:
@@ -85,6 +88,9 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
                 case ModelCode.ACLINESEG_X0:
                     property.SetValue(X0);
                     break;
+                case ModelCode.ACLINESEG_PERLENIMP:
+                    property.SetValue(PerLengthImpedance);
+                    break;
 
                 default:
                     base.GetProperty(property);
@@ -119,6 +125,9 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
                     break;
                 case ModelCode.ACLINESEG_X0:
                     X0 = property.AsFloat();
+                    break;
+                case ModelCode.ACLINESEG_PERLENIMP:
+                    PerLengthImpedance = property.AsReference();
                     break;
 
                 default:

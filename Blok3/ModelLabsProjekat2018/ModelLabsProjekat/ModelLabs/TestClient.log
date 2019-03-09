@@ -1,0 +1,19 @@
+04-Mar-19 00:16:26 : Network Model Service Test Client is up and running...
+04-Mar-19 00:16:26 : Result directory: ../Results
+04-Mar-19 00:16:35 : Getting values method started.
+04-Mar-19 00:16:35 : Failed to get model type code for DMS type: 0. Invalid DMS type
+04-Mar-19 00:16:35 : Getting values method for entered id = 1 failed.
+	Failed to get model type code for DMS type: 0. Invalid DMS type
+04-Mar-19 00:20:41 : Network Model Service Test Client is up and running...
+04-Mar-19 00:20:41 : Result directory: ../Results
+04-Mar-19 00:21:05 : Network Model Service Test Client is up and running...
+04-Mar-19 00:21:05 : Result directory: ../Results
+04-Mar-19 00:21:08 : Apply update method started.
+04-Mar-19 00:21:08 : Apply update method failed. Invalid Model Code: PERLENSEQIMP
+
+04-Mar-19 00:21:16 : Network Model Service Test Client stopped.
+04-Mar-19 00:49:12 : Network Model Service Test Client is up and running...
+04-Mar-19 00:49:13 : Result directory: ../Results
+04-Mar-19 00:49:14 : Apply update method started.
+04-Mar-19 00:49:14 : Apply update method failed. Invalid Model Code: PERLENSEQIMP
+

@@ -12,7 +12,13 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
 
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            if (base.Equals(obj))
+            {
+                PerLengthImpedance x = (PerLengthImpedance)obj;
+                return CompareHelper.CompareLists(x.ACLineSegments, ACLineSegments);
+            }
+
+            return false;
         }
 
         public override int GetHashCode()
@@ -24,12 +30,28 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
 
         public override bool HasProperty(ModelCode property)
         {
-            return base.HasProperty(property);
+            switch(property)
+            {
+                case ModelCode.PERLENIMP_ACLINESEGS:
+                    return true;
+
+                default:
+                    return base.HasProperty(property);
+            }
         }
 
         public override void GetProperty(Property property)
         {
-            base.GetProperty(property);
+            switch (property.Id)
+            {
+                case ModelCode.PERLENIMP_ACLINESEGS:
+                    property.SetValue(ACLineSegments);
+                    break;
+
+                default:
+                    base.GetProperty(property);
+                    break;
+            }
         }
 
         public override void SetProperty(Property property)

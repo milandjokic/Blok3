@@ -1,12 +1,12 @@
 ﻿namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 {
-    using FTN.Common;
+	using FTN.Common;
 
-    /// <summary>
-    /// PowerTransformerConverter has methods for populating
-    /// ResourceDescription objects using PowerTransformerCIMProfile_Labs objects.
-    /// </summary>
-    public static class PowerTransformerConverter
+	/// <summary>
+	/// PowerTransformerConverter has methods for populating
+	/// ResourceDescription objects using PowerTransformerCIMProfile_Labs objects.
+	/// </summary>
+	public static class PowerTransformerConverter
 	{
 
 		#region Populate ResourceDescription
@@ -14,18 +14,7 @@
 		{
 			if ((cimIdentifiedObject != null) && (rd != null))
 			{
-				//if (cimIdentifiedObject.MRIDHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.IDOBJ_MRID, cimIdentifiedObject.MRID));
-				//}
-				//if (cimIdentifiedObject.NameHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.IDOBJ_NAME, cimIdentifiedObject.Name));
-				//}
-				//if (cimIdentifiedObject.DescriptionHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.IDOBJ_DESCRIPTION, cimIdentifiedObject.Description));
-				//}
+				
 			}
 		}
 
@@ -33,22 +22,7 @@
 		{
 			if ((cimPowerSystemResource != null) && (rd != null))
 			{
-				PowerTransformerConverter.PopulateIdentifiedObjectProperties(cimPowerSystemResource, rd);
-
-				//if (cimPowerSystemResource.CustomTypeHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.PSR_CUSTOMTYPE, cimPowerSystemResource.CustomType));
-				//}
-				//if (cimPowerSystemResource.LocationHasValue)
-				//{
-				//	long gid = importHelper.GetMappedGID(cimPowerSystemResource.Location.ID);
-				//	if (gid < 0)
-				//	{
-				//		report.Report.Append("WARNING: Convert ").Append(cimPowerSystemResource.GetType().ToString()).Append(" rdfID = \"").Append(cimPowerSystemResource.ID);
-				//		report.Report.Append("\" - Failed to set reference to Location: rdfID \"").Append(cimPowerSystemResource.Location.ID).AppendLine(" \" is not mapped to GID!");
-				//	}
-				//	rd.AddProperty(new Property(ModelCode.PSR_LOCATION, gid));
-				//}
+				PopulateIdentifiedObjectProperties(cimPowerSystemResource, rd);
 			}
 		}
 
@@ -56,16 +30,7 @@
 		{
 			if ((cimEquipment != null) && (rd != null))
 			{
-				PowerTransformerConverter.PopulatePowerSystemResourceProperties(cimEquipment, rd, importHelper, report);
-
-				//if (cimEquipment.PrivateHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.EQUIPMENT_ISPRIVATE, cimEquipment.Private));
-				//}
-				//if (cimEquipment.IsUndergroundHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.EQUIPMENT_ISUNDERGROUND, cimEquipment.IsUnderground));
-				//}
+				PopulatePowerSystemResourceProperties(cimEquipment, rd, importHelper, report);
 			}
 		}
 
@@ -73,29 +38,196 @@
 		{
 			if ((cimConductingEquipment != null) && (rd != null))
 			{
-				PowerTransformerConverter.PopulateEquipmentProperties(cimConductingEquipment, rd, importHelper, report);
-
-				//if (cimConductingEquipment.PhasesHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.CONDEQ_PHASES, (short)GetDMSPhaseCode(cimConductingEquipment.Phases)));
-				//}
-				//if (cimConductingEquipment.RatedVoltageHasValue)
-				//{
-				//	rd.AddProperty(new Property(ModelCode.CONDEQ_RATEDVOLTAGE, cimConductingEquipment.RatedVoltage));
-				//}
-				//if (cimConductingEquipment.BaseVoltageHasValue)
-				//{
-				//	long gid = importHelper.GetMappedGID(cimConductingEquipment.BaseVoltage.ID);
-				//	if (gid < 0)
-				//	{
-				//		report.Report.Append("WARNING: Convert ").Append(cimConductingEquipment.GetType().ToString()).Append(" rdfID = \"").Append(cimConductingEquipment.ID);
-				//		report.Report.Append("\" - Failed to set reference to BaseVoltage: rdfID \"").Append(cimConductingEquipment.BaseVoltage.ID).AppendLine(" \" is not mapped to GID!");
-				//	}
-				//	rd.AddProperty(new Property(ModelCode.CONDEQ_BASVOLTAGE, gid));
-				//}
+				PopulateEquipmentProperties(cimConductingEquipment, rd, importHelper, report);
 			}
 		}
 
+		public static void PopulateSeriesCompensatorProperties(FTN.SeriesCompensator cimSerComp, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimSerComp != null) && (rd != null))
+			{
+				PopulateConductingEquipmentProperties(cimSerComp, rd, importHelper, report);
+
+				if (cimSerComp.RHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.SERCOMP_R, cimSerComp.R));
+				}
+
+				if (cimSerComp.R0HasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.SERCOMP_R0, cimSerComp.R0));
+				}
+
+				if (cimSerComp.XHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.SERCOMP_X, cimSerComp.X));
+				}
+				
+				if (cimSerComp.X0HasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.SERCOMP_X0, cimSerComp.X0));
+				}
+			}
+		}
+
+		public static void PopulateConductorProperties(FTN.Conductor cimConductor, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimConductor != null) && (rd != null))
+			{
+				PopulateConductingEquipmentProperties(cimConductor, rd, importHelper, report);
+
+				if (cimConductor.LengthHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.CONDUCTOR_LENGTH, cimConductor.Length));
+				}
+			}
+		}
+
+		public static void PopulateDCLineSegmentProperties(FTN.DCLineSegment cimDCLineSeg, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimDCLineSeg != null) && (rd != null))
+			{
+				PopulateConductorProperties(cimDCLineSeg, rd, importHelper, report);
+			}
+		}
+
+		public static void PopulateACLineSegmentProperties(FTN.ACLineSegment cimACLineSeg, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimACLineSeg != null) && (rd != null))
+			{
+				PopulateConductorProperties(cimACLineSeg, rd, importHelper, report);
+
+				if (cimACLineSeg.B0chHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_B0CH, cimACLineSeg.B0ch));
+				}
+
+				if (cimACLineSeg.BchHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_BCH, cimACLineSeg.Bch));
+				}
+
+				if (cimACLineSeg.G0chHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_G0CH, cimACLineSeg.G0ch));
+				}
+
+				if (cimACLineSeg.GchHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_GCH, cimACLineSeg.Gch));
+				}
+
+				if (cimACLineSeg.RHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_R, cimACLineSeg.R));
+				}
+
+				if (cimACLineSeg.R0HasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_R0, cimACLineSeg.R0));
+				}
+
+				if (cimACLineSeg.XHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_X, cimACLineSeg.X));
+				}
+
+				if (cimACLineSeg.X0HasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.ACLINESEG_X0, cimACLineSeg.X0));
+				}
+			}
+		}
+
+		public static void PopulateConnectivityNodeContainerProperties(FTN.ConnectivityNodeContainer cimConNodeCont, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimConNodeCont != null) && (rd != null))
+			{
+				PopulatePowerSystemResourceProperties(cimConNodeCont, rd, importHelper, report);
+			}
+		}
+
+		public static void PopulateEquipmentContainerProperties(FTN.EquipmentContainer cimEquipCont, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimEquipCont != null) && (rd != null))
+			{
+				PopulateConnectivityNodeContainerProperties(cimEquipCont, rd, importHelper, report);
+			}
+		}
+
+		public static void PopulateLineProperties(FTN.Line cimLine, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimLine != null) && (rd != null))
+			{
+				PopulateEquipmentContainerProperties(cimLine, rd, importHelper, report);
+			}
+		}
+
+		public static void PopulateSubGeographicalRegionProperties(FTN.SubGeographicalRegion cimSubGeoReg, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimSubGeoReg != null) && (rd != null))
+			{
+				PopulateIdentifiedObjectProperties(cimSubGeoReg, rd);
+			}
+
+		}
+
+		public static void PopulatePerLengthImpedanceProperties(FTN.PerLengthImpedance cimPerLenImp, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimPerLenImp != null) && (rd != null))
+			{
+				PopulateIdentifiedObjectProperties(cimPerLenImp, rd);
+			}
+		}
+
+		public static void PopulatePerLengthSequenceImpedanceProperties(FTN.PerLengthSequenceImpedance cimPerLenSeqImp, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+		{
+			if ((cimPerLenSeqImp != null) && (rd != null))
+			{
+				PopulatePerLengthImpedanceProperties(cimPerLenSeqImp, rd, importHelper, report);
+
+				if (cimPerLenSeqImp.B0chHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_B0CH, cimPerLenSeqImp.B0ch));
+				}
+
+				if (cimPerLenSeqImp.BchHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_BCH, cimPerLenSeqImp.Bch));
+				}
+
+				if (cimPerLenSeqImp.G0chHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_G0CH, cimPerLenSeqImp.G0ch));
+				}
+
+				if (cimPerLenSeqImp.GchHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_GCH, cimPerLenSeqImp.Gch));
+				}
+
+				if (cimPerLenSeqImp.RHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_R, cimPerLenSeqImp.R));
+				}
+
+				if (cimPerLenSeqImp.R0HasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_R0, cimPerLenSeqImp.R0));
+				}
+
+				if (cimPerLenSeqImp.XHasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_X, cimPerLenSeqImp.X));
+				}
+
+				if (cimPerLenSeqImp.X0HasValue)
+				{
+					rd.AddProperty(new Property(ModelCode.PERLENSEQIMP_X0, cimPerLenSeqImp.X0));
+				}
+			}
+		}
+		
 		#endregion Populate ResourceDescription
 
 		#region Enums convert
