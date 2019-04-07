@@ -17,3 +17,17 @@
 04-Mar-19 00:49:14 : Apply update method started.
 04-Mar-19 00:49:14 : Apply update method failed. Invalid Model Code: PERLENSEQIMP
 
+07-Apr-19 18:40:24 : Network Model Service Test Client is up and running...
+07-Apr-19 18:40:24 : Result directory: ../Results
+07-Apr-19 18:40:28 : Apply update method started.
+07-Apr-19 18:40:28 : Apply update method failed. Invalid Model Code: PERLENSEQIMP
+
+07-Apr-19 18:50:37 : Apply update method started.
+07-Apr-19 18:50:37 : Apply update method failed. Invalid Model Code: PERLENSEQIMP
+
+07-Apr-19 18:51:19 : Getting values method started.
+07-Apr-19 18:51:19 : Getting values method for entered id = 25769803777 failed.
+	Invalid Model Code: PERLENSEQIMP
+07-Apr-19 18:51:37 : Getting values method started.
+07-Apr-19 18:51:37 : Getting values method successfully finished.
+07-Apr-19 18:52:28 : Network Model Service Test Client stopped.

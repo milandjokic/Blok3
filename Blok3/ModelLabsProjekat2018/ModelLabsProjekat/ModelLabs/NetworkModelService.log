@@ -16,3 +16,22 @@
 04-Mar-19 00:20:57 : The Network Model Service is started.
 04-Mar-19 00:20:57 : Press <Enter> to stop the service.
 04-Mar-19 00:21:18 : The Network Model Service is closed.
+07-Apr-19 18:39:42 : Starting Network Model Serivice...
+07-Apr-19 18:39:42 : The WCF service GenericDataAccess is ready.
+07-Apr-19 18:39:42 : Endpoints:
+07-Apr-19 18:39:42 : net.tcp://localhost:10000/NetworkModelService/GDA/
+07-Apr-19 18:39:42 : Connection string: ../NetworkModelData.data
+07-Apr-19 18:39:42 : Trace level: Info
+07-Apr-19 18:39:42 : The Network Model Service is started.
+07-Apr-19 18:39:42 : Press <Enter> to stop the service.
+07-Apr-19 18:40:07 : Applying  delta to network model.
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000600000001).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000500000001).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000500000002).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000400000001).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000400000002).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000100000001).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000100000002).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000200000001).
+07-Apr-19 18:40:07 : Inserting entity with GID (0000000200000002).
+07-Apr-19 18:40:07 : Applying delta to network model successfully finished.
