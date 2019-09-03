@@ -64,7 +64,7 @@ namespace FTN.Common
 		PERLENIMP                           = 0x1300000000000000,
 		PERLENIMP_ACLINESEGS                = 0x1300000000000119,
 
-		PERLENSEQIMP                        = 0x1310000000060005,
+		PERLENSEQIMP                        = 0x1310000000060000,
 		PERLENSEQIMP_B0CH                   = 0x1310000000060105,
 		PERLENSEQIMP_BCH                    = 0x1310000000060205,
 		PERLENSEQIMP_G0CH                   = 0x1310000000060305,

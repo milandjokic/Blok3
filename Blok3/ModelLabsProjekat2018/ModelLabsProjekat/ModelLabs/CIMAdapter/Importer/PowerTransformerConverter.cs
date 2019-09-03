@@ -31,7 +31,18 @@
 			if ((cimEquipment != null) && (rd != null))
 			{
 				PopulatePowerSystemResourceProperties(cimEquipment, rd, importHelper, report);
-			}
+
+                if (cimEquipment.EquipmentContainerHasValue)
+                {
+                    long gid = importHelper.GetMappedGID(cimEquipment.EquipmentContainer.ID);
+                    if (gid < 0)
+                    {
+                        report.Report.Append("WARNING: Convert ").Append(cimEquipment.GetType().ToString()).Append(" rdfID = \"").Append(cimEquipment.ID);
+                        report.Report.Append("\" - Failed to set reference to Equipment: rdfID \"").Append(cimEquipment.EquipmentContainer.ID).AppendLine(" \" is not mapped to GID!");
+                    }
+                    rd.AddProperty(new Property(ModelCode.EQUIPMENT_EQUIPCONT, gid));
+                }
+            }
 		}
 
 		public static void PopulateConductingEquipmentProperties(FTN.ConductingEquipment cimConductingEquipment, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
@@ -88,7 +99,7 @@
 			if ((cimDCLineSeg != null) && (rd != null))
 			{
 				PopulateConductorProperties(cimDCLineSeg, rd, importHelper, report);
-			}
+            }
 		}
 
 		public static void PopulateACLineSegmentProperties(FTN.ACLineSegment cimACLineSeg, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
@@ -136,7 +147,18 @@
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEG_X0, cimACLineSeg.X0));
 				}
-			}
+
+                if (cimACLineSeg.PerLengthImpedanceHasValue)
+                {
+                    long gid = importHelper.GetMappedGID(cimACLineSeg.PerLengthImpedance.ID);
+                    if (gid < 0)
+                    {
+                        report.Report.Append("WARNING: Convert ").Append(cimACLineSeg.GetType().ToString()).Append(" rdfID = \"").Append(cimACLineSeg.ID);
+                        report.Report.Append("\" - Failed to set reference to ACLineSeg: rdfID \"").Append(cimACLineSeg.PerLengthImpedance.ID).AppendLine(" \" is not mapped to GID!");
+                    }
+                    rd.AddProperty(new Property(ModelCode.ACLINESEG_PERLENIMP, gid));
+                }
+            }
 		}
 
 		public static void PopulateConnectivityNodeContainerProperties(FTN.ConnectivityNodeContainer cimConNodeCont, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
@@ -160,7 +182,18 @@
 			if ((cimLine != null) && (rd != null))
 			{
 				PopulateEquipmentContainerProperties(cimLine, rd, importHelper, report);
-			}
+
+                if (cimLine.RegionHasValue)
+                {
+                    long gid = importHelper.GetMappedGID(cimLine.Region.ID);
+                    if (gid < 0)
+                    {
+                        report.Report.Append("WARNING: Convert ").Append(cimLine.GetType().ToString()).Append(" rdfID = \"").Append(cimLine.ID);
+                        report.Report.Append("\" - Failed to set reference to Line: rdfID \"").Append(cimLine.Region.ID).AppendLine(" \" is not mapped to GID!");
+                    }
+                    rd.AddProperty(new Property(ModelCode.LINE_SUBGEOREG, gid));
+                }
+            }
 		}
 
 		public static void PopulateSubGeographicalRegionProperties(FTN.SubGeographicalRegion cimSubGeoReg, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)

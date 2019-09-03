@@ -3,6 +3,14 @@
     <operation type="insert">
       <ResourceDescriptions count="9">
         <ResourceDescription>
+          <id gid="0x00000005ffffffff" type="SUBGEOREG" />
+          <Properties />
+        </ResourceDescription>
+        <ResourceDescription>
+          <id gid="0x00000005fffffffe" type="SUBGEOREG" />
+          <Properties />
+        </ResourceDescription>
+        <ResourceDescription>
           <id gid="0x00000006ffffffff" type="PERLENSEQIMP" />
           <Properties>
             <Property id="PERLENSEQIMP_B0CH" value="10" />
@@ -16,40 +24,28 @@
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
-          <id gid="0x00000005ffffffff" type="SUBGEOREG" />
-          <Properties />
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000005fffffffe" type="SUBGEOREG" />
-          <Properties />
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000004ffffffff" type="SERCOMP" />
+          <id gid="0x00000001ffffffff" type="LINE" />
           <Properties>
-            <Property id="SERCOMP_R" value="10" />
-            <Property id="SERCOMP_R0" value="10" />
-            <Property id="SERCOMP_X" value="10" />
-            <Property id="SERCOMP_X0" value="10" />
+            <Property id="LINE_SUBGEOREG" value="0x00000005ffffffff" />
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
-          <id gid="0x00000004fffffffe" type="SERCOMP" />
+          <id gid="0x00000001fffffffe" type="LINE" />
           <Properties>
-            <Property id="SERCOMP_R" value="10" />
-            <Property id="SERCOMP_R0" value="10" />
-            <Property id="SERCOMP_X" value="10" />
-            <Property id="SERCOMP_X0" value="10" />
+            <Property id="LINE_SUBGEOREG" value="0x00000005fffffffe" />
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
           <id gid="0x00000002ffffffff" type="DCLINESEG" />
           <Properties>
+            <Property id="EQUIPMENT_EQUIPCONT" value="0x00000001ffffffff" />
             <Property id="CONDUCTOR_LENGTH" value="10" />
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
-          <id gid="0x00000002fffffffe" type="DCLINESEG" />
+          <id gid="0x00000003ffffffff" type="ACLINESEG" />
           <Properties>
+            <Property id="EQUIPMENT_EQUIPCONT" value="0x00000001fffffffe" />
             <Property id="CONDUCTOR_LENGTH" value="10" />
             <Property id="ACLINESEG_B0CH" value="10" />
             <Property id="ACLINESEG_BCH" value="10" />
@@ -59,15 +55,28 @@
             <Property id="ACLINESEG_R0" value="10" />
             <Property id="ACLINESEG_X" value="10" />
             <Property id="ACLINESEG_X0" value="10" />
+            <Property id="ACLINESEG_PERLENIMP" value="0x00000006ffffffff" />
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
-          <id gid="0x00000001ffffffff" type="LINE" />
-          <Properties />
+          <id gid="0x00000004ffffffff" type="SERCOMP" />
+          <Properties>
+            <Property id="EQUIPMENT_EQUIPCONT" value="0x00000001ffffffff" />
+            <Property id="SERCOMP_R" value="10" />
+            <Property id="SERCOMP_R0" value="10" />
+            <Property id="SERCOMP_X" value="10" />
+            <Property id="SERCOMP_X0" value="10" />
+          </Properties>
         </ResourceDescription>
         <ResourceDescription>
-          <id gid="0x00000001fffffffe" type="LINE" />
-          <Properties />
+          <id gid="0x00000004fffffffe" type="SERCOMP" />
+          <Properties>
+            <Property id="EQUIPMENT_EQUIPCONT" value="0x00000001fffffffe" />
+            <Property id="SERCOMP_R" value="10" />
+            <Property id="SERCOMP_R0" value="10" />
+            <Property id="SERCOMP_X" value="10" />
+            <Property id="SERCOMP_X0" value="10" />
+          </Properties>
         </ResourceDescription>
       </ResourceDescriptions>
     </operation>

@@ -93,14 +93,15 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			LogManager.Log("Loading elements and creating delta...", LogLevel.Info);
 
 			//// import all concrete model types (DMSType enum)
-			ImportPerLengthSequenceImpedances();
 			ImportSubGeographicalRegions();
-			ImportSeriesCompensators();
+            ImportPerLengthSequenceImpedances();
+			ImportLines();
 			ImportDCLineSegments();
 			ImportACLineSegments();
-			ImportLines();
+			ImportSeriesCompensators();
 
-			LogManager.Log("Loading elements and creating delta completed.", LogLevel.Info);
+
+            LogManager.Log("Loading elements and creating delta completed.", LogLevel.Info);
 		}
 
 		#region Import
@@ -308,7 +309,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			ResourceDescription rd = null;
 			if (cimACLineSeg != null)
 			{
-				long gid = ModelCodeHelper.CreateGlobalId(0, (short)DMSType.DCLINESEG, importHelper.CheckOutIndexForDMSType(DMSType.DCLINESEG));
+				long gid = ModelCodeHelper.CreateGlobalId(0, (short)DMSType.ACLINESEG, importHelper.CheckOutIndexForDMSType(DMSType.ACLINESEG));
 				rd = new ResourceDescription(gid);
 				importHelper.DefineIDMapping(cimACLineSeg.ID, gid);
 

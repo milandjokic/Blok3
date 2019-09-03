@@ -793,12 +793,12 @@ namespace FTN.Common
 
 		private void InitializeTypeIdsInInsertOrder() // DONE
 		{
-			TypeIdsInInsertOrder.Add(ModelCode.PERLENSEQIMP);
 			TypeIdsInInsertOrder.Add(ModelCode.SUBGEOREG);
-			TypeIdsInInsertOrder.Add(ModelCode.SERCOMP);
+			TypeIdsInInsertOrder.Add(ModelCode.PERLENSEQIMP);
 			TypeIdsInInsertOrder.Add(ModelCode.LINE);
 			TypeIdsInInsertOrder.Add(ModelCode.DCLINESEG);
 			TypeIdsInInsertOrder.Add(ModelCode.ACLINESEG);
+			TypeIdsInInsertOrder.Add(ModelCode.SERCOMP);
 
 		}
 

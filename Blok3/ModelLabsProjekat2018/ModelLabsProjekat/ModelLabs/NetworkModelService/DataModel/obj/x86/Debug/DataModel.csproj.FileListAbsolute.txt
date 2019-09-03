@@ -38,3 +38,10 @@ D:\Simes\Projekat\ModelLabsProjekat\ModelLabs\bin\FTN.DataModel.pdb
 D:\Simes\Projekat\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\DataModel.csprojResolveAssemblyReference.cache
 D:\Simes\Projekat\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\FTN.DataModel.dll
 D:\Simes\Projekat\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\FTN.DataModel.pdb
+C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN.DataModel.dll
+C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN.DataModel.pdb
+C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\DataModel.csprojAssemblyReference.cache
+C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\DataModel.csproj.CoreCompileInputs.cache
+C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\DataModel.csproj.CopyComplete
+C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\FTN.DataModel.dll
+C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\DataModel\obj\x86\Debug\FTN.DataModel.pdb

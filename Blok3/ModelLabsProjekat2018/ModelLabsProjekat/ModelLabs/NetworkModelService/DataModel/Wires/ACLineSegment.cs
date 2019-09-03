@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FTN.Services.NetworkModelService.DataModel.Wires
 {
-    public class ACLineSegment : Line
+    public class ACLineSegment : Conductor
     {
         public float B0ch { get; set; }
         public float Bch { get; set; }

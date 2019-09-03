@@ -2,7 +2,7 @@
 
 namespace FTN.Services.NetworkModelService.DataModel.Wires
 {
-    public class DCLineSegment : Line
+    public class DCLineSegment : Conductor
     {
         public DCLineSegment(long globalId) : base(globalId) { }
 
