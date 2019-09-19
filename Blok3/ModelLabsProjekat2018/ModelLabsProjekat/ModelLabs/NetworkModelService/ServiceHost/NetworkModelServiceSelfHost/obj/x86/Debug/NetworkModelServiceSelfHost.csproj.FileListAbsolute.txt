@@ -56,3 +56,11 @@ C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjeka
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\NetworkModelServiceSelfHost.csproj.CopyComplete
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\FTN_NetworkModelService.exe
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\FTN_NetworkModelService.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN_NetworkModelService.exe.config
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN_NetworkModelService.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN_NetworkModelService.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\NetworkModelServiceSelfHost.csprojAssemblyReference.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\NetworkModelServiceSelfHost.csproj.CoreCompileInputs.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\NetworkModelServiceSelfHost.csproj.CopyComplete
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\FTN_NetworkModelService.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\ServiceHost\NetworkModelServiceSelfHost\obj\x86\Debug\FTN_NetworkModelService.pdb

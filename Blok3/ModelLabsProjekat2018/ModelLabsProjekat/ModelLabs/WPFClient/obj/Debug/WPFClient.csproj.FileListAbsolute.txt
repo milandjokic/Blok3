@@ -18,3 +18,23 @@ C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjeka
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.csproj.CopyComplete
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.exe
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\bin\Debug\WPFClient.exe.config
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\bin\Debug\WPFClient.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\bin\Debug\WPFClient.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\bin\Debug\FTN.Common.dll
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\bin\Debug\FTN.ServiceContracts.ServiceContracts.NetworkModelQueryContract.dll
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\bin\Debug\FTN.Common.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\bin\Debug\FTN.ServiceContracts.ServiceContracts.NetworkModelQueryContract.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.csprojAssemblyReference.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\MainWindow.g.cs
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\App.g.cs
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient_MarkupCompile.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient_MarkupCompile.lref
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\MainWindow.baml
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.g.resources
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.Properties.Resources.resources
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.csproj.GenerateResource.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.csproj.CoreCompileInputs.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.csproj.CopyComplete
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\WPFClient\obj\Debug\WPFClient.pdb

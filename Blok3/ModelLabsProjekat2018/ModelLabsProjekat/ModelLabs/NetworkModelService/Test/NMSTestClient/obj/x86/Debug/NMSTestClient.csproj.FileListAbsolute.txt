@@ -48,3 +48,11 @@ C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjeka
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.csproj.CopyComplete
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.exe
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\NMSTestClient.exe.config
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\NMSTestClient.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\NMSTestClient.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.csprojAssemblyReference.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.csproj.CoreCompileInputs.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.csproj.CopyComplete
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\NetworkModelService\Test\NMSTestClient\obj\x86\Debug\NMSTestClient.pdb

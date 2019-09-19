@@ -48,3 +48,14 @@ C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjeka
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.csproj.CopyComplete
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.exe
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\ModelLabsApp.exe.config
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\ModelLabsApp.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\ModelLabsApp.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.csprojAssemblyReference.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.ModelLabsAppForm.resources
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.Properties.Resources.resources
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.csproj.GenerateResource.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.csproj.CoreCompileInputs.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.csproj.CopyComplete
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\ModelLabsApp\obj\x86\Debug\ModelLabsApp.pdb

@@ -25,3 +25,10 @@ C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjeka
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\CIMAdapter.csproj.CopyComplete
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMAdapter.dll
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMAdapter.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN.ESI.SIMES.CIM.CIMAdapter.dll
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN.ESI.SIMES.CIM.CIMAdapter.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\CIMAdapter.csprojAssemblyReference.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\CIMAdapter.csproj.CoreCompileInputs.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\CIMAdapter.csproj.CopyComplete
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMAdapter.dll
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMAdapter\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMAdapter.pdb

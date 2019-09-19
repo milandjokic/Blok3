@@ -45,3 +45,15 @@ C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjeka
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\CIMProfileCreator.csproj.CoreCompileInputs.cache
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMProfileCreator.exe
 C:\Users\Milica\Desktop\Milan\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMProfileCreator.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\Predefined\PredefinedClasses.xml
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\Predefined\PredefinedEnumerations.xml
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\Predefined\PredefinedPackages.xml
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN.ESI.SIMES.CIM.CIMProfileCreator.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\bin\FTN.ESI.SIMES.CIM.CIMProfileCreator.pdb
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\CIMProfileCreator.csprojAssemblyReference.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMProfileCreator.CIMProfileCreatorForm.resources
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMProfileCreator.Properties.Resources.resources
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\CIMProfileCreator.csproj.GenerateResource.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\CIMProfileCreator.csproj.CoreCompileInputs.cache
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMProfileCreator.exe
+E:\Desktop\Blok 3\Blok3Git\Blok3\Blok3\ModelLabsProjekat2018\ModelLabsProjekat\ModelLabs\CIMProfileCreator\obj\x86\Debug\FTN.ESI.SIMES.CIM.CIMProfileCreator.pdb
