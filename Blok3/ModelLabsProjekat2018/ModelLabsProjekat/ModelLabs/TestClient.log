@@ -182,3 +182,18 @@ Client globalId: 0x00000006ffffffff	 - Server globalId: 0x0000000600000002
 7/12/2019 9:02:33 PM : Getting values method successfully finished.
 7/12/2019 9:03:02 PM : Getting values method started.
 7/12/2019 9:03:02 PM : Getting values method successfully finished.
+9/17/2019 4:28:19 PM : Network Model Service Test Client is up and running...
+9/17/2019 4:28:19 PM : Result directory: ../Results
+9/17/2019 4:28:48 PM : Apply update method started.
+9/17/2019 4:28:49 PM : Apply update method finished. 
+Update result: Succeeded
+Message: Applying delta to network model successfully finished.
+GlobalId pairs:
+Client globalId: 0x00000001ffffffff	 - Server globalId: 0x0000000100000003
+Client globalId: 0x00000002ffffffff	 - Server globalId: 0x0000000200000002
+Client globalId: 0x00000003ffffffff	 - Server globalId: 0x0000000300000002
+Client globalId: 0x00000004ffffffff	 - Server globalId: 0x0000000400000003
+Client globalId: 0x00000005ffffffff	 - Server globalId: 0x0000000500000003
+Client globalId: 0x00000006ffffffff	 - Server globalId: 0x0000000600000002
+
+9/17/2019 4:28:56 PM : Network Model Service Test Client stopped.

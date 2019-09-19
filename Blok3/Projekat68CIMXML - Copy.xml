@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#"
+			xmlns:ftn="http://www.ftnydro.com/CIM15/2010/extension#">
+
+	<cim:SubGeographicalRegion rdf:ID="SGR_3">
+	</cim:SubGeographicalRegion>
+	
+	<cim:Line rdf:ID="LINE_3">
+		<cim:Line.Region rdf:resource="#SGR_3"/>
+	</cim:Line>
+	
+	<cim:PerLengthSequenceImpedance rdf:ID="PLSI_2">
+		<cim:PerLengthImpedance.b0ch>4</cim:PerLengthImpedance.b0ch>
+		<cim:PerLengthImpedance.bch>4</cim:PerLengthImpedance.bch>
+		<cim:PerLengthImpedance.g0ch>4</cim:PerLengthImpedance.g0ch>
+		<cim:PerLengthImpedance.gch>4</cim:PerLengthImpedance.gch>
+		<cim:PerLengthImpedance.r>4</cim:PerLengthImpedance.r>
+		<cim:PerLengthImpedance.r0>4</cim:PerLengthImpedance.r0>
+		<cim:PerLengthImpedance.x>4</cim:PerLengthImpedance.x>
+		<cim:PerLengthImpedance.x0>4</cim:PerLengthImpedance.x0>
+	</cim:PerLengthSequenceImpedance>
+	
+	<cim:DCLineSegment rdf:ID="DCLS_2">
+		<cim:Equipment.EquipmentContainer rdf:resource="#LINE_3"/>
+	</cim:DCLineSegment>
+	
+	<cim:ACLineSegment rdf:ID="ACLS_2">
+		<cim:ACLineSegment.b0ch>3</cim:ACLineSegment.b0ch>
+		<cim:ACLineSegment.bch>3</cim:ACLineSegment.bch>
+		<cim:ACLineSegment.g0ch>3</cim:ACLineSegment.g0ch>
+		<cim:ACLineSegment.gch>3</cim:ACLineSegment.gch>
+		<cim:ACLineSegment.r>3</cim:ACLineSegment.r>
+		<cim:ACLineSegment.r0>3</cim:ACLineSegment.r0>
+		<cim:ACLineSegment.x>3</cim:ACLineSegment.x>
+		<cim:ACLineSegment.x0>3</cim:ACLineSegment.x0>
+		<cim:ACLineSegment.PerLengthImpedance rdf:resource="#PLSI_2"/>
+	</cim:ACLineSegment>
+	
+	<cim:SeriesCompensator rdf:ID="SC_3">
+		<cim:SeriesCompensator.r>2</cim:SeriesCompensator.r>
+		<cim:SeriesCompensator.r0>2</cim:SeriesCompensator.r0>
+		<cim:SeriesCompensator.x>2</cim:SeriesCompensator.x>
+		<cim:SeriesCompensator.x0>2</cim:SeriesCompensator.x0>
+		<cim:Equipment.EquipmentContainer rdf:resource="#LINE_3"/>
+	</cim:SeriesCompensator>
+</rdf:RDF>
+
+
+
+
+
